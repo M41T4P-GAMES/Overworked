@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmrqrlxf6spd"]
+
+[ext_resource type="Script" uid="uid://i2p6bt68qy5x" path="res://Scripts/server_browser_element.gd" id="1_rioxu"]
+
+[node name="ServerBrowserElement" type="HBoxContainer"]
+theme_override_constants/separation = 194
+alignment = 1
+script = ExtResource("1_rioxu")
+
+[node name="ip" type="Label" parent="."]
+layout_mode = 2
+text = "192.168.0.1"
+
+[node name="player_count" type="Label" parent="."]
+layout_mode = 2
+text = "0/4 Players"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Join"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
