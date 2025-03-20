@@ -2,6 +2,7 @@ extends Node
 
 var addresses = []
 var names = []
+var difficulty = 1
 
 func _ready():
 	var addressesFile = FileAccess.open("res://Assets/Data/addresses.json", FileAccess.READ)
@@ -81,7 +82,7 @@ func generate_random_order():
 		theTypes.append(randomProductType)
 		var randomCount = randi_range(1, 20)
 		theCounts.append(randomCount)
-		randomPay += int(floor(calculate_product_price(get_product(randomProductType)) * randf_range(0.9, 1.3) * randomCount))
+		randomPay += int(floor(calculate_product_price(get_product(randomProductType)) * randf_range(0.7, 1.6) * randomCount))
 	var randomName = names.pick_random()
 	var randomAddress = addresses.pick_random()
 	
