@@ -3,6 +3,8 @@ extends Node
 class GameStats:
 	var moneyEarned
 	var totalMoneyEarned
+	var moneySpent
+	var totalMoneySpent
 	var daysPassed
 	var mistakesMade
 	var totalMistakesMade
@@ -11,9 +13,11 @@ class GameStats:
 	var totalTrucksSent
 	var itemsMade
 	var totalItemsMade
+	var inventory
 	
-	func _init(moneyAlreadyEarned, daysAlreadyPassed, mistakesAlreadyMade, newDifficulty, trucksAlreadySent, itemsAlreadyMade):
+	func _init(moneyAlreadyEarned, moneyAlreadySpent, daysAlreadyPassed, mistakesAlreadyMade, newDifficulty, trucksAlreadySent, itemsAlreadyMade):
 		totalMoneyEarned = moneyAlreadyEarned
+		totalMoneySpent = moneyAlreadySpent
 		daysPassed = daysAlreadyPassed
 		totalMistakesMade = mistakesAlreadyMade
 		difficulty = newDifficulty
@@ -38,6 +42,14 @@ class GameStats:
 		itemsMade += 1
 	
 	func calculate_maintenance_costs():
-		return difficulty * (trucksSent * 10 + itemsMade * 5)
+		return difficulty * (trucksSent * 10 + itemsMade * 4)
 		
-		
+	func get_report():
+		return "Daily Report (Day " + str(daysPassed) + \
+		")\nItems made: " + str(itemsMade) + \
+		"\nTrucks sent: " + str(trucksSent) + \
+		"\nMistakes made: " + str(mistakesMade) + \
+		"\nMoney earned: " + str(moneyEarned) + \
+		"\nMoney spent: " + str(moneySpent) + \
+		"\nMaintenance costs: " + calculate_maintenance_costs() + \
+		"\nNet profit: " + str(moneyEarned - moneySpent - calculate_maintenance_costs())
