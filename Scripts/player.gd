@@ -1,13 +1,30 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-const SPEED = 300
+const SPEED = 65
+const MAX_SPEED = 400
+var selected_area = null
 
 
-func _physics_process(delta: float) -> void:
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and selected_area != null:
+		selected_area.interact($Box)
+
+
+func _physics_process(_delta: float) -> void:
+	print(selected_area)
 	var input := Input.get_vector("left", "right", "up", "down")
 	
-	print(input)
-	velocity.x = input.x * SPEED
-	velocity.y = input.y * SPEED
-	
-	move_and_slide()
+	if input != Vector2.ZERO:
+		linear_velocity.x = move_toward(linear_velocity.x, input.x * MAX_SPEED, SPEED)
+		linear_velocity.y = move_toward(linear_velocity.y, input.y * MAX_SPEED, SPEED)
+	else:
+		linear_velocity.x = move_toward(linear_velocity.x, 0, SPEED)
+		linear_velocity.y = move_toward(linear_velocity.y, 0, SPEED)
+
+
+
+func _on_pickup_range_area_entered(area: Area2D) -> void:
+	selected_area = area
+
+func _on_pickup_range_area_exited(area: Area2D) -> void:
+	selected_area = null
