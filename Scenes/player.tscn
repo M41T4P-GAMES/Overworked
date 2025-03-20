@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckmv5npbdlsn7"]
+[gd_scene load_steps=6 format=3 uid="uid://ckmv5npbdlsn7"]
 
 [ext_resource type="Script" uid="uid://bt43rkjtaxbup" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_6t5aa"]
@@ -9,6 +9,11 @@ height = 72.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(214, 199)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cvnsp"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -23,6 +28,7 @@ texture = ExtResource("2_6t5aa")
 shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 
 [node name="PickupRange" type="Area2D" parent="."]
 
@@ -32,6 +38,9 @@ shape = SubResource("RectangleShape2D_cvnsp")
 debug_color = Color(0.763702, 0, 0.346011, 0.42)
 
 [node name="Box" type="Node2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cvnsp")
 
 [connection signal="area_entered" from="PickupRange" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="PickupRange" to="." method="_on_pickup_range_area_exited"]
