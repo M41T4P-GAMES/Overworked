@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://odxexu76qcg6"]
+
+[ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="1_i3jcs"]
+[ext_resource type="Script" uid="uid://cdyawuh7k4bp8" path="res://Scripts/item_tab.gd" id="1_kgf3k"]
+
+[node name="1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kgf3k")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_right = 345.0
+offset_bottom = 87.0
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureButton"]
+position = Vector2(42.48, 43.48)
+scale = Vector2(0.445, 0.445)
+texture = ExtResource("1_i3jcs")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 85.48
+offset_top = 25.48
+offset_right = 452.48
+offset_bottom = 83.48
+scale = Vector2(0.65, 0.65)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 42
+text = "Some kind of item"
+vertical_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

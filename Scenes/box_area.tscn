@@ -16,5 +16,20 @@ shape = SubResource("RectangleShape2D_21xkr")
 [node name="Boxes" type="Node2D" parent="."]
 
 [node name="Box1" parent="Boxes" instance=ExtResource("2_c5mmv")]
+count = 3
+uname = "Wood"
 
 [node name="Box2" parent="Boxes" instance=ExtResource("2_c5mmv")]
+item_id = 1
+count = 3
+uname = "Rock"
+
+[node name="Box3" parent="Boxes" instance=ExtResource("2_c5mmv")]
+item_id = 2
+count = 7
+uname = "Glass"
+
+[node name="Box4" parent="Boxes" instance=ExtResource("2_c5mmv")]
+item_id = 3
+count = 6
+uname = "Rubber"
