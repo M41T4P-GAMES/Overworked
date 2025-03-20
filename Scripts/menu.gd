@@ -45,3 +45,7 @@ func _on_browser_timer_timeout() -> void:
 func _on_server_browser_button_pressed(ip):
 	$ip.text = ip
 	_on_join_pressed()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc"):
+		$ServerBrowser.hide()
