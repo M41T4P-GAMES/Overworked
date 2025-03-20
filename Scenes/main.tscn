@@ -8,3 +8,8 @@ script = ExtResource("1_jjgbg")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://ckmv5npbdlsn7")
 spawn_path = NodePath("..")
+
+[node name="Udp_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]

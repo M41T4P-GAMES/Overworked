@@ -33,5 +33,17 @@ offset_right = 232.0
 offset_bottom = 80.0
 placeholder_text = "IP Adsress"
 
+[node name="Get_servers" type="Button" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 113.0
+offset_right = 104.0
+offset_bottom = 144.0
+text = "Get servers"
+
+[node name="browser_timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Get_servers" to="." method="_on_get_servers_pressed"]
+[connection signal="timeout" from="browser_timer" to="." method="_on_browser_timer_timeout"]

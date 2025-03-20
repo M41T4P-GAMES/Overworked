@@ -1,6 +1,6 @@
 extends Control
 var PORT = 1234
-
+var udp : PacketPeerUDP
 
 var peer = ENetMultiplayerPeer.new()
 
@@ -21,3 +21,16 @@ func _on_join_pressed() -> void:
 
 func _on_connected_to_server():
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+
+func _on_get_servers_pressed() -> void:
+	udp = PacketPeerUDP.new()
+	udp.bind(1236)
+	$browser_timer.start()
+		
+
+
+func _on_browser_timer_timeout() -> void:
+	if udp.get_available_packet_count() > 1:
+		print(udp.get_packet_ip())
+		print(udp.get_packet().get_string_from_ascii())
