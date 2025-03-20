@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwpg4ek85x3n4"]
+[gd_scene load_steps=4 format=3 uid="uid://cwpg4ek85x3n4"]
 
 [ext_resource type="Script" uid="uid://cbyqfvacuxfnb" path="res://Scripts/menu.gd" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://biocs0b60fi5q" path="res://Scripts/skin_change.gd" id="2_cayip"]
+[ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_xhh6f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -59,7 +61,59 @@ offset_bottom = 514.0
 [node name="VBoxContainer" type="VBoxContainer" parent="ServerBrowser/ScrollContainer"]
 layout_mode = 2
 
+[node name="SkinChange" type="Camera2D" parent="."]
+position = Vector2(1857, 324)
+enabled = false
+script = ExtResource("2_cayip")
+
+[node name="Preview" type="Sprite2D" parent="SkinChange"]
+position = Vector2(1, -156)
+texture = ExtResource("2_xhh6f")
+
+[node name="R" type="HSlider" parent="SkinChange"]
+offset_left = -441.0
+offset_right = 446.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.005
+
+[node name="G" type="HSlider" parent="SkinChange"]
+offset_left = -441.0
+offset_top = 33.0
+offset_right = 446.0
+offset_bottom = 49.0
+max_value = 1.0
+step = 0.005
+
+[node name="B" type="HSlider" parent="SkinChange"]
+offset_left = -441.0
+offset_top = 64.0
+offset_right = 446.0
+offset_bottom = 80.0
+max_value = 1.0
+step = 0.005
+
+[node name="JoinServer" type="Button" parent="SkinChange"]
+offset_left = -21.0
+offset_top = 154.0
+offset_right = 17.0
+offset_bottom = 185.0
+text = "Join"
+
+[node name="Back" type="Button" parent="SkinChange"]
+offset_left = -25.0
+offset_top = 206.0
+offset_right = 20.0
+offset_bottom = 237.0
+text = "Back"
+
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="Get_servers" to="." method="_on_get_servers_pressed"]
 [connection signal="timeout" from="browser_timer" to="." method="_on_browser_timer_timeout"]
+[connection signal="value_changed" from="SkinChange/R" to="SkinChange" method="_on_r_value_changed"]
+[connection signal="value_changed" from="SkinChange/G" to="SkinChange" method="_on_g_value_changed"]
+[connection signal="value_changed" from="SkinChange/B" to="SkinChange" method="_on_b_value_changed"]
+[connection signal="pressed" from="SkinChange/JoinServer" to="." method="_on_join_server_pressed"]
+[connection signal="pressed" from="SkinChange/JoinServer" to="SkinChange" method="_on_join_server_pressed"]
+[connection signal="pressed" from="SkinChange/Back" to="." method="_on_back_pressed"]

@@ -9,6 +9,7 @@ func _ready() -> void:
 	set_multiplayer_authority(int(name))
 	if multiplayer.get_unique_id() == int(name):
 		$Camera2D.enabled = true
+		$Sprite2D.self_modulate = Global.skin_color
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
