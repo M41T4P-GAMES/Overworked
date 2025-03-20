@@ -1,0 +1,15 @@
+[
+	{
+		"name":"chair",
+		"resources":[
+			{
+				"name":"wood",
+				"amount": 1
+			},
+			{
+				"name":"rock",
+				"amount": 1
+			}
+		]
+	}
+]
