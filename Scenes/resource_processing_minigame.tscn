@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://dghj7w6g82lfy"]
+
+[ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="1_c2x30"]
+[ext_resource type="Script" uid="uid://bq0pyktdrw4ba" path="res://Scripts/resource_processing_minigame.gd" id="1_hynq1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n45ix"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n45ix"]
+size = Vector2(519, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2x30"]
+size = Vector2(128, 128)
+
+[sub_resource type="Animation" id="Animation_hynq1"]
+resource_name = "arrow"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(85, 154), Vector2(726, 154)]
+}
+
+[sub_resource type="Animation" id="Animation_jni05"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(85, 154)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jni05"]
+_data = {
+&"RESET": SubResource("Animation_jni05"),
+&"arrow": SubResource("Animation_hynq1")
+}
+
+[node name="resource_processing_minigame" type="Node2D"]
+script = ExtResource("1_hynq1")
+
+[node name="red_line" type="Sprite2D" parent="."]
+self_modulate = Color(0.854902, 0, 0.298039, 1)
+position = Vector2(407.25, 197.5)
+scale = Vector2(639.5, 27)
+texture = SubResource("CanvasTexture_n45ix")
+
+[node name="Green" type="Area2D" parent="."]
+position = Vector2(408, 168)
+scale = Vector2(1.14, 1)
+
+[node name="green_line" type="Sprite2D" parent="Green"]
+self_modulate = Color(0.321569, 1, 0.298039, 1)
+position = Vector2(-0.63501, 29.5)
+scale = Vector2(518.73, 26.988)
+texture = SubResource("CanvasTexture_n45ix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Green"]
+position = Vector2(-0.38501, 0)
+shape = SubResource("RectangleShape2D_n45ix")
+
+[node name="Arrow" type="AnimatableBody2D" parent="."]
+position = Vector2(85, 154)
+scale = Vector2(0.31, 0.31)
+
+[node name="Sprite2D" type="Sprite2D" parent="Arrow"]
+texture = ExtResource("1_c2x30")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrow"]
+shape = SubResource("RectangleShape2D_c2x30")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jni05")
+}
