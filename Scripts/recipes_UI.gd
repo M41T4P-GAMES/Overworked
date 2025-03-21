@@ -77,4 +77,3 @@ func on_close() -> void:
 	for node in recipeContainer.get_children():
 		recipeContainer.remove_child(node)
 		node.queue_free()
-	
