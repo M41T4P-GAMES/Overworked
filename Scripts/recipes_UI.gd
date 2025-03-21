@@ -1,11 +1,11 @@
 extends Control
 
 var materialsAndProducts = null
+var craftableProducts = []
 
 func _ready() -> void:
-	parse_json()
+	load_materials_and_products()
 
-func parse_json():
+func load_materials_and_products():
 	materialsAndProducts = load("res://Scripts/materials_and_products.gd").new()
-	
 	
