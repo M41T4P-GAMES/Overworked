@@ -1,16 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=14 format=3 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://dmp2fdxu0qr5n" path="res://Scenes/recipes_UI.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
+[ext_resource type="Script" uid="uid://c3npeolnujnfc" path="res://Scripts/stamping_area.gd" id="6_6bp64"]
+[ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="7_344ge"]
+[ext_resource type="Script" uid="uid://djtyoct3l0o8d" path="res://Scripts/exports.gd" id="8_344ge"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jjvhh"]
 properties/0/path = NodePath("Timer_label:text")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynf5e"]
+size = Vector2(118, 114)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hptm8"]
+properties/0/path = NodePath(".:taken")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp64"]
+size = Vector2(83, 68)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_344ge"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -117,11 +133,37 @@ text = "3:00"
 [node name="Timer" type="Timer" parent="HUD"]
 wait_time = 10.0
 one_shot = true
-autostart = true
 script = ExtResource("4_jjvhh")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="HUD"]
 replication_config = SubResource("SceneReplicationConfig_jjvhh")
+
+[node name="StampingArea" type="Area2D" parent="."]
+position = Vector2(522, 92)
+script = ExtResource("6_6bp64")
+
+[node name="Sprite2D" type="Sprite2D" parent="StampingArea"]
+texture = ExtResource("7_344ge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StampingArea"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_ynf5e")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="StampingArea"]
+replication_config = SubResource("SceneReplicationConfig_hptm8")
+
+[node name="Exports" type="Area2D" parent="."]
+position = Vector2(894, 78)
+script = ExtResource("8_344ge")
+max_capacity = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exports"]
+shape = SubResource("RectangleShape2D_6bp64")
+
+[node name="Icon" type="Sprite2D" parent="Exports"]
+position = Vector2(1, 0)
+scale = Vector2(0.3, 0.3)
+texture = SubResource("CompressedTexture2D_344ge")
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
