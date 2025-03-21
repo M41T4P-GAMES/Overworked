@@ -118,11 +118,7 @@ func open_storage_ui(inv: Dictionary) -> void:
 		if inv.is_empty():
 			return
 		
-		for key in inv.keys():
-			var new_item = item_tab.instantiate()
-			var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
-			new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
-			$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
+		create_storage_ui(inv)
 
 
 func close_storage_ui() -> void:
@@ -130,8 +126,7 @@ func close_storage_ui() -> void:
 		freeze = false
 		$BoxStorage.hide()
 		remove_item_rpc.rpc(selected_area.name, name, carry_id, carry_count)
-		for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
-			i.queue_free()
+		clear_storage_ui()
 
 @rpc("any_peer", "call_local", "reliable")
 func remove_item_rpc(selected_area_name, player_name, _carry_id, _carry_count):
@@ -148,6 +143,22 @@ func close_stamping(text: String):
 	freeze = false
 
 
+func clear_storage_ui() -> void:
+	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
+			i.queue_free()
+
+func create_storage_ui(inv: Dictionary) -> void:
+	for key in inv.keys():
+		var new_item = item_tab.instantiate()
+		var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
+		new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
+		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
+
+func refresh_storage_ui(inv: Dictionary):
+	clear_storage_ui()
+	create_storage_ui(inv)
+
+
 func _on_pickup_range_area_entered(area: Area2D) -> void:
 	if is_multiplayer_authority():
 		selected_area = area
@@ -162,6 +173,9 @@ func get_carry_id() -> int:
 
 func get_carry_count() -> int:
 	return carry_count
+
+func set_carry_addr(addr: String) -> void:
+	carry_addr = addr
 
 func set_carry_id(id: int) -> void:
 	carry_id = id

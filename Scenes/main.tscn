@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=9 format=3 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://c3npeolnujnfc" path="res://Scripts/stamping_area.gd" id="3_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="4_kry3j"]
+[ext_resource type="Script" uid="uid://djtyoct3l0o8d" path="res://Scripts/exports.gd" id="5_kry3j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21xkr"]
 size = Vector2(116, 119)
@@ -12,6 +13,20 @@ size = Vector2(116, 119)
 properties/0/path = NodePath("StampingArea:taken")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kry3j"]
+properties/0/path = NodePath(".:max_capacity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:inventory")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:items")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:cache")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -53,5 +68,14 @@ shape = SubResource("RectangleShape2D_21xkr")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="StampingArea"]
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_jjvhh")
+
+[node name="Exports" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(563, 374)
+script = ExtResource("5_kry3j")
+max_capacity = 10
+cache = Array[Dictionary]([])
+
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="Exports"]
+replication_config = SubResource("SceneReplicationConfig_kry3j")
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
