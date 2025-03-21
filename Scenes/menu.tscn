@@ -138,7 +138,6 @@ enabled = false
 script = ExtResource("2_cayip")
 
 [node name="Preview" type="AnimatedSprite2D" parent="SkinChange"]
-self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(-2.00003, -121)
 scale = Vector2(3.96875, 3.96875)
@@ -153,6 +152,7 @@ offset_right = 446.0
 offset_bottom = 16.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
 [node name="G" type="HSlider" parent="SkinChange"]
 offset_left = -441.0
@@ -161,6 +161,7 @@ offset_right = 446.0
 offset_bottom = 49.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
 [node name="B" type="HSlider" parent="SkinChange"]
 offset_left = -441.0
@@ -169,6 +170,7 @@ offset_right = 446.0
 offset_bottom = 80.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
 [node name="JoinServer" type="Button" parent="SkinChange"]
 offset_left = -21.0
