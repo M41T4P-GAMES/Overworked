@@ -1,8 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwpg4ek85x3n4"]
+[gd_scene load_steps=14 format=3 uid="uid://cwpg4ek85x3n4"]
 
 [ext_resource type="Script" uid="uid://cbyqfvacuxfnb" path="res://Scripts/menu.gd" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://biocs0b60fi5q" path="res://Scripts/skin_change.gd" id="2_cayip"]
-[ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://d4maagkcya53p" path="res://Assets/Textures/p_idle.png" id="3_cayip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_158mb"]
+atlas = ExtResource("3_cayip")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwsa2"]
+atlas = ExtResource("3_cayip")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsrd8"]
+atlas = ExtResource("3_cayip")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbdvm"]
+atlas = ExtResource("3_cayip")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3rjx"]
+atlas = ExtResource("3_cayip")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6swd7"]
+atlas = ExtResource("3_cayip")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qvly"]
+atlas = ExtResource("3_cayip")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfqti"]
+atlas = ExtResource("3_cayip")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8i7c"]
+atlas = ExtResource("3_cayip")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhh6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_158mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwsa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsrd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbdvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3rjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6swd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qvly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfqti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8i7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -66,9 +137,15 @@ position = Vector2(1857, 324)
 enabled = false
 script = ExtResource("2_cayip")
 
-[node name="Preview" type="Sprite2D" parent="SkinChange"]
-position = Vector2(1, -156)
-texture = ExtResource("2_xhh6f")
+[node name="Preview" type="AnimatedSprite2D" parent="SkinChange"]
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+position = Vector2(-2.00003, -121)
+scale = Vector2(3.96875, 3.96875)
+sprite_frames = SubResource("SpriteFrames_xhh6f")
+autoplay = "default"
+frame = 4
+frame_progress = 0.387106
 
 [node name="R" type="HSlider" parent="SkinChange"]
 offset_left = -441.0
