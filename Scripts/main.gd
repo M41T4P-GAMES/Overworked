@@ -42,3 +42,4 @@ func _on_order_generation_timer_timeout() -> void:
 	if GameStats.availableOrders.size() < 5:
 		GameStats.availableOrders.append(orderGeneration.generate_random_order())
 		$Control2.refresh()
+	$OrderGenerationTimer.start(randi_range(5, 15))

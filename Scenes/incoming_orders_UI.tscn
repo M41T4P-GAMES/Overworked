@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://fckvw8c1skpd" path="res://Scripts/order_decline_button.gd" id="9_omr8y"]
 
 [node name="Control" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
