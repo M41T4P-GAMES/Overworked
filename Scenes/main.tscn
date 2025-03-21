@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=10 format=3 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dmmeiy0tkns7w" path="res://Scenes/sales_station.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://d1ylmh80tnnj4" path="res://Scenes/computer_UI.tscn" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://coumscndp5mby" path="res://Scenes/store_UI.tscn" id="8_344ge"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jjvhh"]
 properties/0/path = NodePath("Timer_label:text")
@@ -121,6 +124,17 @@ script = ExtResource("4_jjvhh")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="HUD"]
 replication_config = SubResource("SceneReplicationConfig_jjvhh")
+
+[node name="Sales_station" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(454, 238)
+
+[node name="ComputerUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Computer" parent="ComputerUI" instance=ExtResource("7_6bp64")]
+
+[node name="Store" parent="ComputerUI" instance=ExtResource("8_344ge")]
+visible = false
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
