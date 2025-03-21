@@ -7,6 +7,8 @@ var item_tab = preload("res://Scenes/item_tab.tscn")
 var facing : Vector2i
 @export var carry_id = -1
 @export var carry_count = 0
+@export var carry_addr: String = ""
+
 
 func _ready() -> void:
 	set_multiplayer_authority(int(name))
@@ -135,6 +137,10 @@ func close_storage_ui() -> void:
 func remove_item_rpc(selected_area_name, player_name, _carry_id, _carry_count):
 	if multiplayer.is_server():
 		get_node('../' + selected_area_name).remove_item(get_node("../" + player_name), _carry_id, _carry_count)
+
+func open_stamping():
+	$Stamper/UI/AnimationPlayer.play("appear")
+
 
 func _on_pickup_range_area_entered(area: Area2D) -> void:
 	if is_multiplayer_authority():
