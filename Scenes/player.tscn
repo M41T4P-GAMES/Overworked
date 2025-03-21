@@ -694,11 +694,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgqql"]
-radius = 34.0
-height = 72.0
+radius = 20.0
+height = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(214, 199)
+size = Vector2(85, 84)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vgqql"]
 
@@ -953,22 +953,23 @@ script = ExtResource("1_cvnsp")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -8)
-scale = Vector2(2.65, 2.65)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_6t5aa")
 animation = &"walking_back_right"
 autoplay = "idle_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4)
 shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+zoom = Vector2(3, 3)
 
 [node name="PickupRange" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_cvnsp")
 debug_color = Color(0.763702, 0, 0.346011, 0.42)
 
