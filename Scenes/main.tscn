@@ -1,9 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://okgncs467xop"]
 
+
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://dmp2fdxu0qr5n" path="res://Scenes/recipes_UI.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://v65p7q8j33ec" path="res://Scenes/incoming_orders_UI.tscn" id="5_kry3j"]
 
 [ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
@@ -101,6 +104,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Disconnect"
 
+[node name="Control" parent="." instance=ExtResource("4_jjvhh")]
+
+[node name="OrderGenerationTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Control2" parent="." instance=ExtResource("5_kry3j")]
+offset_left = 727.0
+offset_top = 339.0
+offset_right = 727.0
+offset_bottom = 339.0
+
 [node name="Report" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("4_kry3j")
@@ -193,5 +208,7 @@ texture = SubResource("CompressedTexture2D_344ge")
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
+[connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/Panel/Continue" to="Report" method="_on_continue_pressed"]
 [connection signal="timeout" from="HUD/Timer" to="HUD/Timer" method="_on_timeout"]
+
