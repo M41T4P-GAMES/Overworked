@@ -1,0 +1,68 @@
+[
+	{
+		"id": 0,
+		"type": "Material",
+		"name": "Wood",
+		"price": 5,
+		"sprite": "res://Assets/Textures/Materials/wood.png"
+	},
+	{
+		"id": 1,
+		"type": "Material",
+		"name": "Glass",
+		"price": 15,
+		"sprite": "res://Assets/Textures/Materials/glass.png"
+	},
+	{
+		"id": 2,
+		"type": "Material",
+		"name": "Stone",
+		"price": 10,
+		"sprite": "res://Assets/Textures/Materials/stone.png"
+	},
+	{
+		"id": 3,
+		"type": "Material",
+		"name": "Steel",
+		"price": 30,
+		"sprite": "res://Assets/Textures/Materials/steel.png"
+	},
+	{
+		"id": 4,
+		"type": "Material",
+		"name": "Rubber",
+		"price": 25,
+		"sprite": "res://Assets/Textures/Materials/rubber.png"
+	},
+	{
+		"id": 5,
+		"type": "Material",
+		"name": "Plastic",
+		"price": 20,
+		"sprite": "res://Assets/Textures/Materials/plastic.png"
+	},
+	{
+		"id": 6,
+		"type": "Product",
+		"name": "Chair",
+		"sprite": "res://Assets/Textures/Products/chair.png"
+	},
+	{
+		"id": 7,
+		"type": "Product",
+		"name": "Table",
+		"sprite": "res://Assets/Textures/Products/table.png"
+	},
+	{
+		"id": 8,
+		"type": "Product",
+		"name": "Door",
+		"sprite": "res://Assets/Textures/Products/door.png"
+	},
+	{
+		"id": 9,
+		"type": "Product",
+		"name": "Window",
+		"sprite": "res://Assets/Textures/Products/window.png"
+	}
+]
