@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmp2fdxu0qr5n"]
 
-[ext_resource type="Script" uid="uid://bci0lv6x8ou43" path="res://Scenes/recipes_ui.gd" id="1_wk8mq"]
+[ext_resource type="Script" uid="uid://maa344ep6k66" path="res://Scripts/recipes_UI.gd" id="1_5nrwk"]
 [ext_resource type="Theme" uid="uid://cblx72lp0bij4" path="res://Assets/Crafting_UI/window_theme.tres" id="2_5nrwk"]
 [ext_resource type="Texture2D" uid="uid://dsbckkcehhl8o" path="res://Assets/Crafting_UI/crafting icon.png" id="2_erish"]
 [ext_resource type="Theme" uid="uid://dys7obpbw7hjp" path="res://Assets/Crafting_UI/Default_button.tres" id="2_gwifc"]
@@ -17,7 +17,7 @@ offset_right = -13.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wk8mq")
+script = ExtResource("1_5nrwk")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
