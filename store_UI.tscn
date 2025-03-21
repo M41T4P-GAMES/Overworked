@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://coumscndp5mby"]
+
+[ext_resource type="Theme" uid="uid://c117yb2rnu4l5" path="res://Assets/Textures/Computer_UI/Computer_bg.tres" id="1_38dwx"]
+[ext_resource type="Texture2D" uid="uid://dyckrx100bkna" path="res://Assets/Textures/Store_UI/wood.png" id="2_0l8cn"]
+[ext_resource type="Theme" uid="uid://dce40xx61qfnw" path="res://Assets/Textures/Incomming_ord_UI/acc_but.tres" id="3_mtkh2"]
+[ext_resource type="Texture2D" uid="uid://cqghyvnvc7snk" path="res://Assets/Textures/Store_UI/iron_ingot.png" id="4_aipiy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -541.5
+offset_top = -282.5
+offset_right = 541.5
+offset_bottom = 282.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_38dwx")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Store"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Resource" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_0l8cn")
+
+[node name="Resource_type" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "5$"
+
+[node name="buy_button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_mtkh2")
+text = "   Buy   "
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Resource" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_aipiy")
+
+[node name="Resource_type" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "10$"
+
+[node name="buy_button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_mtkh2")
+text = "   Buy   "
