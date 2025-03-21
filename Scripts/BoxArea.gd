@@ -10,11 +10,11 @@ func _ready() -> void:
 
 
 func interact(player: RigidBody2D):
-	if player.carry_addr.is_empty():
-		if player.carry_id >= 0:
-			add_box(player)
-		else:
-			open_storage_ui_rpc.rpc(player.name, inventory)
+	
+	if player.carry_id >= 0:
+		add_box(player)
+	else:
+		open_storage_ui_rpc.rpc(player.name, inventory)
 
 @rpc("any_peer", "call_local", "reliable")
 func open_storage_ui_rpc(player_name, inventory):
