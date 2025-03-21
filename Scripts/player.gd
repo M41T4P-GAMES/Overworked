@@ -15,6 +15,7 @@ func _ready() -> void:
 	if multiplayer.get_unique_id() == int(name):
 		$Camera2D.enabled = true
 		$Sprite2D.self_modulate = Global.skin_color
+	$CanvasLayer/CraftingUI.set_input_area(get_node("../BoxArea"))
 
 
 func _input(event: InputEvent) -> void:
