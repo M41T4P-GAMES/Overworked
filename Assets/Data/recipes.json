@@ -51,4 +51,22 @@
 			}
 		]
 	},
+	{
+		"productId": 10,
+		"materials": [
+			{
+				"materialId": 5,
+				"count": 4
+			}
+		]
+	},
+	{
+		"productId": 11,
+		"materials": [
+			{
+				"materialId": 2,
+				"count": 5
+			}
+		]
+	},
 ]

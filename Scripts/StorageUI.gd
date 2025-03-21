@@ -45,14 +45,12 @@ func _on_add_pressed() -> void:
 
 
 func _on_get_pressed() -> void:
-	var node = new_box.instantiate()
-	node.init(selected_id, current_count, "Some name", load("res://icon.svg"))
-	get_node("../../Box").add_child(node)
-	node.position = Vector2(0, -100)
-	node.show()
+	var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", selected_id)
 	
-	inventory[selected_id] -= current_count
-	if inventory[selected_id] == 0:
-		inventory.erase(selected_id)
+	var player = get_node("../../")
+	player.set_carry_id(selected_id)
+	player.set_carry_count(current_count)
+	player.get_node("Box/ItemSprite").set_texture(load(entry["sprite"]))
+	player.get_node("Box").show()
 	
-	get_node("../../").close_storage_ui()
+	player.close_storage_ui()

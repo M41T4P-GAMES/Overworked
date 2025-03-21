@@ -1,10 +1,11 @@
-[gd_scene load_steps=105 format=3 uid="uid://ckmv5npbdlsn7"]
+[gd_scene load_steps=106 format=3 uid="uid://ckmv5npbdlsn7"]
 
 [ext_resource type="Script" uid="uid://bt43rkjtaxbup" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://dfoilxkcx32y5" path="res://Assets/Textures/p_walk.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://d4maagkcya53p" path="res://Assets/Textures/p_idle.png" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://dkh4gjus75r0u" path="res://Scripts/StorageUI.gd" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://dw2x8okfxjl7m" path="res://Assets/Textures/parcel_base.png" id="4_x3wgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
 atlas = ExtResource("2_vgqql")
@@ -722,6 +723,18 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath("Sprite2D:flip_h")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+properties/5/path = NodePath(".:carry_id")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:carry_count")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Box:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Box/ItemSprite:frame")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [node name="Player" type="RigidBody2D" groups=["Player"]]
 gravity_scale = 0.0
@@ -751,6 +764,16 @@ shape = SubResource("RectangleShape2D_cvnsp")
 debug_color = Color(0.763702, 0, 0.346011, 0.42)
 
 [node name="Box" type="Node2D" parent="."]
+visible = false
+
+[node name="BoxSprite" type="Sprite2D" parent="Box"]
+texture_filter = 1
+position = Vector2(0, -39)
+texture = ExtResource("4_x3wgy")
+
+[node name="ItemSprite" type="Sprite2D" parent="Box"]
+texture_filter = 1
+position = Vector2(0, -39)
 
 [node name="Desktop" type="Node2D" parent="."]
 visible = false
@@ -972,10 +995,6 @@ theme_override_constants/separation = 87
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cvnsp")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bhedhrwomsm6j")
-spawn_path = NodePath("../Box")
 
 [connection signal="area_entered" from="PickupRange" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="PickupRange" to="." method="_on_pickup_range_area_exited"]
