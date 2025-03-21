@@ -22,16 +22,29 @@ func add_box(player: RigidBody2D) -> void:
 		print("Area is full")
 		return
 	
-	items += player.carry_count
-	# If such a box already exists, add to it, otherwise put it in
-	if inventory.has(player.carry_id):
-		inventory[player.carry_id] += player.carry_count
-	else:
-		inventory[player.carry_id] = player.carry_count
+	var carry_id = player.get_carry_id()
+	var carry_count = player.get_carry_count()
 	
-	player.carry_id = -1
-	player.carry_count = 0
+	items += carry_count
+	# If such a box already exists, add to it, otherwise put it in
+	if inventory.has(carry_id):
+		inventory[carry_id] += carry_count
+	else:
+		inventory[carry_id] = carry_count
+	
+	player.set_carry_id(-1)
+	player.set_carry_count(0)
 	player.get_node("Box").hide()
+
+
+func remove_item(player: RigidBody2D, id: int, count: int) -> void:
+	inventory[id] -= count
+	if inventory[id] == 0:
+		inventory.erase(id)
+	
+	items -= count
+	player.set_carry_id(id)
+	player.set_carry_count(count)
 
 
 func evaluate_capacity():

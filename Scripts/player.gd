@@ -104,6 +104,7 @@ func _physics_process(_delta: float) -> void:
 func open_storage_ui(inv: Dictionary) -> void:
 	freeze = true
 	$BoxStorage/UI/BottomButtons.hide()
+	$BoxStorage/UI.update_inv(inv)
 	$BoxStorage.show()
 	
 	if inv.is_empty():
@@ -114,13 +115,12 @@ func open_storage_ui(inv: Dictionary) -> void:
 		var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
 		new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
 		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
-	
-	$BoxStorage/UI.update_inv(inv)
+
 
 func close_storage_ui() -> void:
 	freeze = false
 	$BoxStorage.hide()
-	selected_area.evaluate_capacity()
+	selected_area.remove_item(self, carry_id, carry_count)
 	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
 		i.queue_free()
 
@@ -132,3 +132,16 @@ func _on_pickup_range_area_entered(area: Area2D) -> void:
 func _on_pickup_range_area_exited(area: Area2D) -> void:
 	if is_multiplayer_authority():
 		selected_area = null
+
+
+func get_carry_id() -> int:
+	return carry_id
+
+func get_carry_count() -> int:
+	return carry_count
+
+func set_carry_id(id: int) -> void:
+	carry_id = id
+
+func set_carry_count(count: int) -> void:
+	carry_count = count

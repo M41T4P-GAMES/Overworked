@@ -21,4 +21,12 @@ inventory = Dictionary[int, int]({
 1: 3
 })
 
+[node name="BoxArea2" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(873, 338)
+max_capacity = 35
+inventory = Dictionary[int, int]({
+0: 4,
+1: 3
+})
+
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
