@@ -65,3 +65,9 @@ func get_product(productId):
 		if product.id == productId:
 			return product
 	return null
+	
+func stringify_recipe(product):
+	var result = ""
+	for material in product.materialCosts:
+		result += str(material.count) + " x " + get_material(material.materialId).materialName + (", " if product.materialCosts.find(material) < product.materialCosts.size() - 1 else "")
+	return result

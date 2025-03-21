@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmp2fdxu0qr5n"]
+[gd_scene load_steps=4 format=3 uid="uid://dmp2fdxu0qr5n"]
 
 [ext_resource type="Script" uid="uid://maa344ep6k66" path="res://Scripts/recipes_UI.gd" id="1_5nrwk"]
 [ext_resource type="Theme" uid="uid://cblx72lp0bij4" path="res://Assets/Crafting_UI/window_theme.tres" id="2_5nrwk"]
-[ext_resource type="Texture2D" uid="uid://dsbckkcehhl8o" path="res://Assets/Crafting_UI/crafting icon.png" id="2_erish"]
-[ext_resource type="Theme" uid="uid://dys7obpbw7hjp" path="res://Assets/Crafting_UI/Default_button.tres" id="2_gwifc"]
 [ext_resource type="Theme" uid="uid://b66pkix1bercv" path="res://Assets/Crafting_UI/close_theme.tres" id="4_r18me"]
 
 [node name="Control" type="Control"]
@@ -76,75 +74,4 @@ layout_mode = 2
 size_flags_vertical = 3
 columns = 3
 
-[node name="chair" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Стол"
-
-[node name="chair_recipe" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "= дърво + пирони"
-
-[node name="craft_chair" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_gwifc")
-icon = ExtResource("2_erish")
-icon_alignment = 1
-
-[node name="table" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Маса"
-
-[node name="table_recipe" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "= дърво + дърво + пирони"
-
-[node name="craft_table" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_gwifc")
-icon = ExtResource("2_erish")
-
-[node name="window" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Прозорец"
-
-[node name="windoe_recipe" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "= стъкло + пирони"
-
-[node name="craft_window" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_gwifc")
-icon = ExtResource("2_erish")
-
-[node name="furnace" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Печка"
-
-[node name="furnace_recipe" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "= Баба ти + дядо ти"
-
-[node name="craft_furnace" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_gwifc")
-icon = ExtResource("2_erish")
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Close" to="." method="on_close"]

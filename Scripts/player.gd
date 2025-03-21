@@ -5,6 +5,8 @@ const MAX_SPEED = 400
 var selected_area = null
 var item_tab = preload("res://Scenes/item_tab.tscn")
 var facing : Vector2i
+var carry_id = -1
+var carry_count = 0
 
 func _ready() -> void:
 	set_multiplayer_authority(int(name))
@@ -97,7 +99,7 @@ func _physics_process(_delta: float) -> void:
 			elif facing == Vector2i.RIGHT:
 				$Sprite2D.flip_h = false
 				$Sprite2D.play("idle_right")
-				
+
 
 func open_storage_ui(inv: Dictionary) -> void:
 	freeze = true
@@ -109,7 +111,8 @@ func open_storage_ui(inv: Dictionary) -> void:
 	
 	for key in inv.keys():
 		var new_item = item_tab.instantiate()
-		new_item.init(int(key), inv[key], "Some name", load("res://icon.svg"))
+		var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
+		new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
 		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
 	
 	$BoxStorage/UI.update_inv(inv)
