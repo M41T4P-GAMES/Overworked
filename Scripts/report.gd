@@ -2,7 +2,8 @@ extends CanvasLayer
 
 func _ready() -> void:
 	if !is_multiplayer_authority():
-		$Panel/Continue.hide()
+		$PanelContainer/MarginContainer/VBoxContainer/Continue.hide()
+	$PanelContainer/MarginContainer/VBoxContainer/Label.text = GameStats.get_report()
 
 @rpc("any_peer", "call_local", "reliable")
 func show_report():
@@ -23,4 +24,4 @@ func hide_report():
 func _on_continue_pressed() -> void:
 	if is_multiplayer_authority():
 		hide_report.rpc()
-		get_node("../HUD/Timer").start()
+		get_node("../DayTimer").start()
