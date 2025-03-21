@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://dmp2fdxu0qr5n" path="res://Scenes/recipes_UI.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
