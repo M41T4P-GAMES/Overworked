@@ -31,20 +31,20 @@ func _physics_process(_delta: float) -> void:
 			linear_velocity.y = move_toward(linear_velocity.y, 0, SPEED)
 
 
-func open_storage_ui(boxes: Node2D) -> void:
+func open_storage_ui(inv: Dictionary) -> void:
 	freeze = true
 	$BoxStorage/UI/BottomButtons.hide()
 	$BoxStorage.show()
 	
-	if boxes.get_child_count() == 0:
+	if inv.is_empty():
 		return
 	
-	for box in boxes.get_children():
+	for key in inv.keys():
 		var new_item = item_tab.instantiate()
-		new_item.init(box.item_id, box.count, box.name, box.get_node("BoxSprite").texture)
+		new_item.init(int(key), inv[key], "Some name", load("res://icon.svg"))
 		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
 	
-	$BoxStorage/UI.update_boxes(boxes)
+	$BoxStorage/UI.update_inv(inv)
 
 func close_storage_ui() -> void:
 	freeze = false

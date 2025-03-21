@@ -3,7 +3,7 @@ extends Node2D
 var selected_max_count = 0
 var current_count = 1
 var selected_id = -1
-var boxes: Node2D
+var inventory: Dictionary
 
 var new_box = preload("res://Scenes/box.tscn")
 
@@ -31,8 +31,8 @@ func handle_enabling():
 	$BottomButtons/Count.text = str(current_count)
 
 
-func update_boxes(box: Node2D) -> void:
-	boxes = box
+func update_inv(inv: Dictionary) -> void:
+	inventory = inv
 
 
 func _on_sub_pressed() -> void:
@@ -45,17 +45,14 @@ func _on_add_pressed() -> void:
 
 
 func _on_get_pressed() -> void:
-	var box = boxes.get_child(selected_id)
-	
-
 	var node = new_box.instantiate()
-	node.init(box.item_id, current_count, box.uname, box.get_node("ItemSprite").texture)
+	node.init(selected_id, current_count, "Some name", load("res://icon.svg"))
 	get_node("../../Box").add_child(node)
 	node.position = Vector2(0, -100)
 	node.show()
 	
-	box.count -= current_count
-	if box.count == 0:
-		box.queue_free()
+	inventory[selected_id] -= current_count
+	if inventory[selected_id] == 0:
+		inventory.erase(selected_id)
 	
 	get_node("../../").close_storage_ui()

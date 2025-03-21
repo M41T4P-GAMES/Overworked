@@ -1,6 +1,7 @@
 extends Node2D
 var player_scene = preload("res://Scenes/player.tscn")
 
+
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	if multiplayer.is_server():
