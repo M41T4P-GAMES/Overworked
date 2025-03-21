@@ -5,8 +5,8 @@ const MAX_SPEED = 400
 var selected_area = null
 var item_tab = preload("res://Scenes/item_tab.tscn")
 var facing : Vector2i
-var carry_id = -1
-var carry_count = 0
+@export var carry_id = -1
+@export var carry_count = 0
 
 func _ready() -> void:
 	set_multiplayer_authority(int(name))
@@ -18,7 +18,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("interact") and selected_area != null:
-			selected_area.interact(self)
+			interact_req.rpc(selected_area.name, name)
+
+@rpc("any_peer", "call_local", "reliable")
+func interact_req(selected_area_name, player_name):
+	if multiplayer.is_server():
+		get_node("../" + selected_area_name).interact(get_node("../" + player_name))
 
 
 func _physics_process(_delta: float) -> void:
@@ -102,28 +107,34 @@ func _physics_process(_delta: float) -> void:
 
 
 func open_storage_ui(inv: Dictionary) -> void:
-	freeze = true
-	$BoxStorage/UI/BottomButtons.hide()
-	$BoxStorage/UI.update_inv(inv)
-	$BoxStorage.show()
-	
-	if inv.is_empty():
-		return
-	
-	for key in inv.keys():
-		var new_item = item_tab.instantiate()
-		var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
-		new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
-		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
+	if is_multiplayer_authority():
+		freeze = true
+		$BoxStorage/UI/BottomButtons.hide()
+		$BoxStorage/UI.update_inv(inv)
+		$BoxStorage.show()
+		
+		if inv.is_empty():
+			return
+		
+		for key in inv.keys():
+			var new_item = item_tab.instantiate()
+			var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
+			new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
+			$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
 
 
 func close_storage_ui() -> void:
-	freeze = false
-	$BoxStorage.hide()
-	selected_area.remove_item(self, carry_id, carry_count)
-	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
-		i.queue_free()
+	if is_multiplayer_authority():
+		freeze = false
+		$BoxStorage.hide()
+		remove_item_rpc.rpc(selected_area.name, name, carry_id, carry_count)
+		for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
+			i.queue_free()
 
+@rpc("any_peer", "call_local", "reliable")
+func remove_item_rpc(selected_area_name, player_name, _carry_id, _carry_count):
+	if multiplayer.is_server():
+		get_node('../' + selected_area_name).remove_item(get_node("../" + player_name), _carry_id, _carry_count)
 
 func _on_pickup_range_area_entered(area: Area2D) -> void:
 	if is_multiplayer_authority():
