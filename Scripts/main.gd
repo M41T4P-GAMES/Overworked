@@ -1,8 +1,10 @@
 extends Node2D
 var player_scene = preload("res://Scenes/player.tscn")
-
+var orderGeneration = null
 
 func _ready() -> void:
+	orderGeneration = load("res://Scripts/order_generation.gd").new()
+	orderGeneration.parse_json()
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	if multiplayer.is_server():
 		multiplayer.peer_connected.connect(_on_peer_connected)
@@ -35,3 +37,8 @@ func send_udp():
 
 func _on_udp_timer_timeout() -> void:
 	send_udp()
+#
+func _on_order_generation_timer_timeout() -> void:
+	if GameStats.availableOrders.size() < 5:
+		GameStats.availableOrders.append(orderGeneration.generate_random_order())
+		$Control2.refresh()

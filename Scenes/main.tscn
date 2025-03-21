@@ -1,5 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://okgncs467xop"]
 
+
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
@@ -68,6 +69,18 @@ inventory = Dictionary[int, int]({
 })
 
 [node name="ESCMenu" parent="." instance=ExtResource("4_d1ilt")]
+
+[node name="Control" parent="." instance=ExtResource("4_jjvhh")]
+
+[node name="OrderGenerationTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Control2" parent="." instance=ExtResource("5_kry3j")]
+offset_left = 727.0
+offset_top = 339.0
+offset_right = 727.0
+offset_bottom = 339.0
 
 [node name="Report" type="CanvasLayer" parent="."]
 visible = false
@@ -159,5 +172,8 @@ scale = Vector2(0.3, 0.3)
 texture = SubResource("CompressedTexture2D_344ge")
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
+
+[connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/Panel/Continue" to="Report" method="_on_continue_pressed"]
 [connection signal="timeout" from="HUD/Timer" to="HUD/Timer" method="_on_timeout"]
+

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsbckkcehhl8o"
-path="res://.godot/imported/crafting_icon.png-62a717cbfc574ed395f24f0277240cb4.ctex"
+uid="uid://b1h6fovjuipgq"
+path="res://.godot/imported/hud.png-407d1780c7b2e4bf65c30aba2f46cae3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting_UI/crafting_icon.png"
-dest_files=["res://.godot/imported/crafting_icon.png-62a717cbfc574ed395f24f0277240cb4.ctex"]
+source_file="res://Assets/Textures/hud.png"
+dest_files=["res://.godot/imported/hud.png-407d1780c7b2e4bf65c30aba2f46cae3.ctex"]
 
 [params]
 
