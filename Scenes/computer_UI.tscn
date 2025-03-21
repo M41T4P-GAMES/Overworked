@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1ylmh80tnnj4"]
+[gd_scene load_steps=5 format=3 uid="uid://d1ylmh80tnnj4"]
 
+[ext_resource type="Script" uid="uid://lpjqr84j0ott" path="res://Scripts/computer_ui.gd" id="1_irbta"]
 [ext_resource type="Theme" uid="uid://c117yb2rnu4l5" path="res://Assets/Textures/Computer_UI/Computer_bg.tres" id="1_x2odt"]
 [ext_resource type="Theme" uid="uid://b66pkix1bercv" path="res://Assets/Textures/Crafting_UI/close_theme.tres" id="2_0pck3"]
 [ext_resource type="Theme" uid="uid://b1gb3hso4e0fj" path="res://Assets/Textures/Computer_UI/comp_buttons.tres" id="2_fv8w1"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_irbta")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -66,3 +68,6 @@ size_flags_vertical = 6
 theme = ExtResource("2_fv8w1")
 theme_override_font_sizes/font_size = 64
 text = "   Store   "
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/store" to="." method="_on_store_pressed"]

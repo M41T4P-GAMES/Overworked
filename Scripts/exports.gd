@@ -2,6 +2,7 @@ extends Area2D
 
 @export_range(1, 100) var max_capacity: int
 @export var inventory: Dictionary[int, int] = {}
+@export var cache: Array[Dictionary] = []
 @export var items = 0
 
 
@@ -10,15 +11,8 @@ func _ready() -> void:
 
 
 func interact(player: RigidBody2D):
-	if player.carry_addr.is_empty():
-		if player.carry_id >= 0:
+	if !player.carry_addr.is_empty():
 			add_box(player)
-		else:
-			open_storage_ui_rpc.rpc(player.name, inventory)
-
-@rpc("any_peer", "call_local", "reliable")
-func open_storage_ui_rpc(player_name, inventory):
-	get_node("../" + player_name).open_storage_ui(inventory)
 
 func add_box(player: RigidBody2D) -> void:
 	if items + player.carry_count > max_capacity:
@@ -27,6 +21,8 @@ func add_box(player: RigidBody2D) -> void:
 	
 	var carry_id = player.carry_id
 	var carry_count = player.carry_count
+	var carry_addr = player.carry_addr
+	add_to_cache(carry_id, carry_count, carry_addr)
 	
 	items += carry_count
 	# If such a box already exists, add to it, otherwise put it in
@@ -36,24 +32,27 @@ func add_box(player: RigidBody2D) -> void:
 		inventory[carry_id] = carry_count
 	
 	remove_from_player.rpc(player.name)
-	
+
+
 @rpc("any_peer", "call_local", "reliable")
 func remove_from_player(player_name):
 	get_node("../" + player_name).set_carry_id(-1)
+	get_node("../" + player_name).set_carry_addr("")
 	get_node("../" + player_name).set_carry_count(0)
 	get_node("../" + player_name).get_node("Box").hide()
-
-func remove_item(player: RigidBody2D, id: int, count: int) -> void:
-	inventory[id] -= count
-	if inventory[id] == 0:
-		inventory.erase(id)
-	
-	items -= count
-	player.set_carry_id(id)
-	player.set_carry_count(count)
 
 
 func evaluate_capacity():
 	items = 0
 	for value in inventory.values():
 		items += value
+
+
+func add_to_cache(id: int, count: int, address: String) -> void:
+	var new_item: Dictionary[String, Variant] = {
+		"address": address,
+		"id": id,
+		"count": count
+	}
+	
+	cache.append(new_item)
