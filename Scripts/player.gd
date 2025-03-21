@@ -189,3 +189,6 @@ func set_carry_id(id: int) -> void:
 
 func set_carry_count(count: int) -> void:
 	carry_count = count
+
+func set_carry_addr(addr: String) -> void:
+	carry_addr = addr

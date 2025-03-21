@@ -1,5 +1,6 @@
 [gd_scene load_steps=52 format=4 uid="uid://okgncs467xop"]
 
+
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
@@ -16,7 +17,7 @@
 [ext_resource type="Script" uid="uid://djtyoct3l0o8d" path="res://Scripts/exports.gd" id="8_344ge"]
 [ext_resource type="Theme" uid="uid://cblx72lp0bij4" path="res://Assets/Textures/Crafting_UI/window_theme.tres" id="10_hibaj"]
 [ext_resource type="FontFile" uid="uid://df472u4sjn54k" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="11_pdsj5"]
-[ext_resource type="Script" path="res://Scenes/tiri.gd" id="11_wsu2k"]
+[ext_resource type="Script" uid="uid://vffsn4gxm03e" path="res://Scripts/tiri.gd" id="11_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://m5c3p6qo0q26" path="res://Assets/Workstations/logistics_workbench_idle.png" id="12_h1bgf"]
 [ext_resource type="Texture2D" uid="uid://dfkhlwy8ufd16" path="res://Assets/Workstations/truck_idle.png" id="12_k12tt"]
 [ext_resource type="Texture2D" uid="uid://c7lxxxxyn6q0o" path="res://Assets/Workstations/truck_move.png" id="13_h1bgf"]
@@ -28,13 +29,59 @@ line_spacing = 4.0
 font = ExtResource("11_pdsj5")
 font_size = 22
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fevyy"]
+size = Vector2(57, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hibaj"]
+size = Vector2(57, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynf5e"]
-size = Vector2(118, 114)
+size = Vector2(84, 91.3333)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hptm8"]
 properties/0/path = NodePath(".:taken")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3802"]
+size = Vector2(62.6667, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e08e2"]
+size = Vector2(80.7143, 62.8572)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_neg2b"]
+properties/0/path = NodePath(".:max_capacity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:inventory")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:items")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:monitorable")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp64"]
+size = Vector2(118.5, 92)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aqgau"]
+properties/0/path = NodePath(".:max_capacity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:inventory")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:cache")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:items")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:monitorable")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fevyy"]
 atlas = ExtResource("12_k12tt")
@@ -150,7 +197,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Intake:monitorable")
+tracks/3/path = NodePath("../../Intake:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -203,7 +250,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Intake:monitorable")
+tracks/3/path = NodePath("../../Intake:monitorable")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -256,7 +303,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Intake:monitorable")
+tracks/3/path = NodePath("../../Intake:monitorable")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -272,23 +319,6 @@ _data = {
 &"pull_up": SubResource("Animation_6vcvc"),
 &"take_off": SubResource("Animation_hpc6h")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e08e2"]
-size = Vector2(80.7143, 62.8572)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_neg2b"]
-properties/0/path = NodePath(".:max_capacity")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:inventory")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:items")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:monitorable")
-properties/3/spawn = true
-properties/3/replication_mode = 1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r33sp"]
 animations = [{
@@ -368,7 +398,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Exports:monitorable")
+tracks/3/path = NodePath("../../Exports:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -421,7 +451,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Exports:monitorable")
+tracks/3/path = NodePath("../../Exports:monitorable")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -474,7 +504,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Exports:monitorable")
+tracks/3/path = NodePath("../../Exports:monitorable")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -490,26 +520,6 @@ _data = {
 &"pull_up": SubResource("Animation_hdf80"),
 &"take_off": SubResource("Animation_k2e45")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp64"]
-size = Vector2(118.5, 92)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aqgau"]
-properties/0/path = NodePath(".:max_capacity")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:inventory")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:cache")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:items")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath(".:monitorable")
-properties/4/spawn = true
-properties/4/replication_mode = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_8cuat"]
 
@@ -573,6 +583,15 @@ inventory = Dictionary[int, int]({
 [node name="Sprite2D" type="Sprite2D" parent="Export"]
 texture = ExtResource("4_wsu2k")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Export"]
+position = Vector2(36, 38)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_b3802")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Export"]
+position = Vector2(19.5, 62)
+shape = SubResource("RectangleShape2D_fevyy")
+
 [node name="Import" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(-736, -176)
 max_capacity = 35
@@ -585,6 +604,15 @@ inventory = Dictionary[int, int]({
 position = Vector2(-8, 0)
 texture = ExtResource("5_k12tt")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Import"]
+position = Vector2(36, 38)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_b3802")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Import"]
+position = Vector2(19.5, 62)
+shape = SubResource("RectangleShape2D_hibaj")
+
 [node name="BoxArea2" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(16, 272)
 max_capacity = 35
@@ -596,19 +624,6 @@ inventory = Dictionary[int, int]({
 [node name="Sprite2D" type="Sprite2D" parent="BoxArea2"]
 position = Vector2(-3, -42)
 texture = ExtResource("6_h1bgf")
-
-[node name="BoxArea3" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(-829, -104)
-max_capacity = 35
-inventory = Dictionary[int, int]({
-0: 4,
-1: 3
-})
-
-[node name="Sprite2D" type="Sprite2D" parent="BoxArea3"]
-position = Vector2(-3, -42)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("7_b3802")
 
 [node name="ESCMenu" parent="." instance=ExtResource("4_d1ilt")]
 
@@ -660,6 +675,7 @@ position = Vector2(-568, -152)
 scale = Vector2(2, 2)
 
 [node name="StampingArea" type="Area2D" parent="."]
+z_index = 1
 position = Vector2(-488, 376)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("6_6bp64")
@@ -668,11 +684,43 @@ script = ExtResource("6_6bp64")
 texture = ExtResource("12_h1bgf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StampingArea"]
-position = Vector2(-1, -1)
+position = Vector2(-1.33334, 10.3333)
 shape = SubResource("RectangleShape2D_ynf5e")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="StampingArea"]
 replication_config = SubResource("SceneReplicationConfig_hptm8")
+
+[node name="Collision" type="StaticBody2D" parent="StampingArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StampingArea/Collision"]
+position = Vector2(0, 7.33333)
+shape = SubResource("RectangleShape2D_b3802")
+
+[node name="Intake" type="Area2D" parent="."]
+position = Vector2(-892, 200)
+scale = Vector2(1.4, 1.4)
+monitorable = false
+script = ExtResource("14_b3802")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intake"]
+position = Vector2(13.9286, 3.57144)
+shape = SubResource("RectangleShape2D_e08e2")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Intake"]
+replication_config = SubResource("SceneReplicationConfig_neg2b")
+
+[node name="Exports" type="Area2D" parent="."]
+position = Vector2(-856, 366)
+monitorable = false
+script = ExtResource("8_344ge")
+max_capacity = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exports"]
+position = Vector2(-17.75, -0.999939)
+shape = SubResource("RectangleShape2D_6bp64")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Exports"]
+replication_config = SubResource("SceneReplicationConfig_aqgau")
 
 [node name="Tiri" type="Node2D" parent="."]
 position = Vector2(-992, -232)
@@ -685,7 +733,6 @@ scale = Vector2(1.4, 1.4)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tiri/Incoming"]
 sprite_frames = SubResource("SpriteFrames_1w6v2")
 animation = &"move"
-frame_progress = 0.29332
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tiri/Incoming"]
 position = Vector2(-1.78571, 4.64285)
@@ -696,17 +743,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_kltya")
 }
 
-[node name="Intake" type="Area2D" parent="Tiri/Incoming"]
-monitorable = false
-script = ExtResource("14_b3802")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiri/Incoming/Intake"]
-position = Vector2(13.9286, 3.57144)
-shape = SubResource("RectangleShape2D_e08e2")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Tiri/Incoming/Intake"]
-replication_config = SubResource("SceneReplicationConfig_neg2b")
-
 [node name="Outgoing" type="CharacterBody2D" parent="Tiri"]
 position = Vector2(-60, 592)
 scale = Vector2(1.4, 1.4)
@@ -714,7 +750,6 @@ scale = Vector2(1.4, 1.4)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tiri/Outgoing"]
 sprite_frames = SubResource("SpriteFrames_r33sp")
 animation = &"move"
-frame_progress = 0.371837
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tiri/Outgoing"]
 position = Vector2(-1.78571, 4.64285)
@@ -725,19 +760,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_536cc")
 }
 
-[node name="Exports" type="Area2D" parent="Tiri/Outgoing"]
-position = Vector2(25.7143, 4.28568)
-scale = Vector2(0.714286, 0.714286)
-monitorable = false
-script = ExtResource("8_344ge")
-max_capacity = 10
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiri/Outgoing/Exports"]
-position = Vector2(-17.75, -0.999939)
-shape = SubResource("RectangleShape2D_6bp64")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Tiri/Outgoing/Exports"]
-replication_config = SubResource("SceneReplicationConfig_aqgau")
+[node name="Call" type="Timer" parent="Tiri/Outgoing"]
+wait_time = 12.0
+one_shot = true
+autostart = true
 
 [node name="Cover" type="MeshInstance2D" parent="Tiri"]
 self_modulate = Color(0.101961, 0.101961, 0.101961, 1)
@@ -765,3 +791,5 @@ replication_config = SubResource("SceneReplicationConfig_pdsj5")
 [connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Report" method="_on_continue_pressed"]
 [connection signal="timeout" from="DayTimer" to="DayTimer" method="_on_timeout"]
+[connection signal="animation_finished" from="Tiri/Outgoing/AnimationPlayer" to="Tiri" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Tiri/Outgoing/Call" to="Tiri" method="_on_call_timeout"]
