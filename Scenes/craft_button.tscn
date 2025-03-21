@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkx88brlde04w"]
 
-[ext_resource type="Theme" uid="uid://dys7obpbw7hjp" path="res://Assets/Crafting_UI/Default_button.tres" id="1_87kff"]
-[ext_resource type="Texture2D" uid="uid://dsbckkcehhl8o" path="res://Assets/Crafting_UI/crafting_icon.png" id="2_qpliv"]
+[ext_resource type="Theme" uid="uid://dys7obpbw7hjp" path="res://Assets/Textures/Crafting_UI/Default_button.tres" id="1_87kff"]
+[ext_resource type="Texture2D" uid="uid://dsbckkcehhl8o" path="res://Assets/Textures/Crafting_UI/crafting icon.png" id="2_qpliv"]
 [ext_resource type="Script" uid="uid://cl6hu6aru8jdk" path="res://Scripts/craft_button.gd" id="3_qpliv"]
 
 [node name="craft_chair" type="Button"]
