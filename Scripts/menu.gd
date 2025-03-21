@@ -72,3 +72,7 @@ func _on_join_server_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	$SkinChange.enabled = false
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
