@@ -13,6 +13,9 @@ func _ready() -> void:
 func interact(player: RigidBody2D):
 	if !player.carry_addr.is_empty():
 			add_box(player)
+	else:
+		if player.carry_id < 0:
+			get_node("../Tiri").send_off()
 
 func add_box(player: RigidBody2D) -> void:
 	if items + player.carry_count > max_capacity:
@@ -42,11 +45,15 @@ func remove_from_player(player_name):
 	get_node("../" + player_name).get_node("Box").hide()
 
 
-func evaluate_capacity():
+func evaluate_capacity() -> void:
 	items = 0
 	for value in inventory.values():
 		items += value
 
+
+func clear() -> void:
+	items = 0
+	inventory = {}
 
 func add_to_cache(id: int, count: int, address: String) -> void:
 	var new_item: Dictionary[String, Variant] = {
