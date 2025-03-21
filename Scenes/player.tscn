@@ -1,5 +1,6 @@
 [gd_scene load_steps=115 format=3 uid="uid://ckmv5npbdlsn7"]
 
+
 [ext_resource type="Script" uid="uid://bt43rkjtaxbup" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://dfoilxkcx32y5" path="res://Assets/Textures/p_walk.png" id="2_fkybt"]
@@ -699,12 +700,6 @@ height = 72.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(214, 199)
 
-[sub_resource type="BoxMesh" id="BoxMesh_cvnsp"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vgqql"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fkybt"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_vgqql"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fkybt"]
@@ -988,97 +983,6 @@ texture = ExtResource("4_x3wgy")
 [node name="ItemSprite" type="Sprite2D" parent="Box"]
 texture_filter = 1
 position = Vector2(0, -39)
-
-[node name="Desktop" type="Node2D" parent="."]
-visible = false
-
-[node name="Cover" type="MeshInstance2D" parent="Desktop"]
-self_modulate = Color(0, 0, 0, 0.0980392)
-position = Vector2(-3.05176e-05, 0)
-scale = Vector2(1152, 648)
-mesh = SubResource("BoxMesh_cvnsp")
-
-[node name="Comp-temp" type="Sprite2D" parent="Desktop"]
-texture_filter = 1
-scale = Vector2(7.8, 7.8)
-texture = SubResource("CompressedTexture2D_vgqql")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Desktop"]
-texture_filter = 1
-offset_left = -177.0
-offset_top = -223.0
-offset_right = -81.0
-offset_bottom = -97.0
-scale = Vector2(3.57, 3.57)
-theme_override_constants/separation = -30
-
-[node name="TextureButton" type="TextureButton" parent="Desktop/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("CompressedTexture2D_fkybt")
-
-[node name="Label" type="Label" parent="Desktop/VBoxContainer/TextureButton"]
-layout_mode = 0
-offset_left = 13.1653
-offset_top = 20.4482
-offset_right = 842.165
-offset_bottom = 164.448
-scale = Vector2(0.085, 0.085)
-theme_override_font_sizes/font_size = 100
-text = "Incoming orders"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton2" type="TextureButton" parent="Desktop/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("CompressedTexture2D_fkybt")
-
-[node name="Label" type="Label" parent="Desktop/VBoxContainer/TextureButton2"]
-layout_mode = 0
-offset_left = 13.1653
-offset_top = 20.4482
-offset_right = 842.165
-offset_bottom = 164.448
-scale = Vector2(0.085, 0.085)
-theme_override_font_sizes/font_size = 100
-text = "Accepted orders"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton3" type="TextureButton" parent="Desktop/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("CompressedTexture2D_fkybt")
-
-[node name="Label" type="Label" parent="Desktop/VBoxContainer/TextureButton3"]
-layout_mode = 0
-offset_left = 13.1653
-offset_top = 20.4482
-offset_right = 842.165
-offset_bottom = 164.448
-scale = Vector2(0.085, 0.085)
-theme_override_font_sizes/font_size = 100
-text = "Purchase"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureButton4" type="TextureButton" parent="Desktop/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("CompressedTexture2D_fkybt")
-
-[node name="Label" type="Label" parent="Desktop/VBoxContainer/TextureButton4"]
-layout_mode = 0
-offset_left = 13.1653
-offset_top = 20.4482
-offset_right = 842.165
-offset_bottom = 164.448
-scale = Vector2(0.085, 0.085)
-theme_override_font_sizes/font_size = 100
-text = "Upgrade Factory"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BoxStorage" type="Node2D" parent="."]
 visible = false
