@@ -64,5 +64,17 @@
 		"type": "Product",
 		"name": "Window",
 		"sprite": "res://Assets/Textures/Products/window.png"
+	},
+	{
+		"id": 10,
+		"type": "Product",
+		"name": "Pipe",
+		"sprite": "res://Assets/Textures/Products/pipe.png"
+	},
+	{
+		"id": 11,
+		"type": "Product",
+		"name": "Furnace",
+		"sprite": "res://Assets/Textures/Products/furnace.png"
 	}
 ]

@@ -1,8 +1,11 @@
 extends Control
 
-var recipes = [];
+var materialsAndProducts = null
+
 func _ready() -> void:
-	parse_recipes()
+	parse_json()
+
+func parse_json():
+	materialsAndProducts = load("res://Scripts/materials_and_products.gd").new()
 	
-func parse_recipes():
-	var file = FileAccess.open("res://recipe)
+	
