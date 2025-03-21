@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=5 format=3 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://dmp2fdxu0qr5n" path="res://Scenes/recipes_UI.tscn" id="4_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://b06tjwlk85cqr" path="res://Scenes/le_ui.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -66,8 +65,6 @@ theme_override_font_sizes/font_size = 60
 text = "Disconnect"
 
 [node name="Control" parent="." instance=ExtResource("4_jjvhh")]
-
-[node name="LeUi" parent="." instance=ExtResource("5_kry3j")]
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]

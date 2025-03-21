@@ -2,7 +2,6 @@ extends Control
 
 func _physics_process(delta: float) -> void:
 	$TextureRect/Label.text = "$" + str(GameStats.money)
-	update_timer(9)
 
 
 func update_timer(time_remaining: int):

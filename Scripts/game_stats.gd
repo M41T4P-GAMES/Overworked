@@ -13,7 +13,7 @@ var trucksSent = 0
 var totalTrucksSent = 0
 var itemsMade = 0
 var totalItemsMade = 0
-var inventory = []
+var currentOrders = []
 var totalScore = 0
 
 #func _init(moneyAlreadyEarned, moneyAlreadySpent, daysAlreadyPassed, mistakesAlreadyMade, newDifficulty, trucksAlreadySent, itemsAlreadyMade, totalScoredPoints):
