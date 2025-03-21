@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameStats="*res://Scripts/game_stats.gd"
 Global="*res://Scripts/global.gd"
 
 [input]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo3om7p7h6fqj"]
+
+[ext_resource type="Script" uid="uid://cq1t2n2u7ybxw" path="res://Scripts/daily_report.gd" id="1_ffwre"]
+[ext_resource type="Texture2D" uid="uid://d2jk6sy2kptm7" path="res://Assets/Textures/DailyReport/daily_report_screen_border.png" id="1_hfafv"]
+[ext_resource type="Texture2D" uid="uid://dvv04ql7odpdo" path="res://Assets/Textures/DailyReport/daily_report_screen_background.png" id="2_y3wxv"]
+[ext_resource type="FontFile" uid="uid://df472u4sjn54k" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="4_bdiqk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq1gv"]
+line_spacing = 4.0
+font = ExtResource("4_bdiqk")
+font_size = 22
+
+[node name="DailyReport" type="Node2D"]
+position = Vector2(576, 324)
+script = ExtResource("1_ffwre")
+
+[node name="Border" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("1_hfafv")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_y3wxv")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -200.0
+offset_top = -280.0
+offset_right = -160.0
+offset_bottom = -257.0
+label_settings = SubResource("LabelSettings_oq1gv")
