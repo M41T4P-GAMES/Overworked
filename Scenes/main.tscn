@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=7 format=3 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jjvhh"]
+properties/0/path = NodePath("Timer_label:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -63,6 +70,60 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Disconnect"
 
+[node name="Report" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("4_kry3j")
+
+[node name="Panel" type="Panel" parent="Report"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.5
+offset_top = -270.0
+offset_right = 283.5
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Report/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = -31.0
+offset_right = 39.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Timer_label" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -79.0
+offset_bottom = 55.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "3:00"
+
+[node name="Timer" type="Timer" parent="HUD"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+script = ExtResource("4_jjvhh")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="HUD"]
+replication_config = SubResource("SceneReplicationConfig_jjvhh")
+
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Report/Panel/Continue" to="Report" method="_on_continue_pressed"]
+[connection signal="timeout" from="HUD/Timer" to="HUD/Timer" method="_on_timeout"]
