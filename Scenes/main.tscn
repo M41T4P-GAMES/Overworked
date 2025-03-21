@@ -66,6 +66,11 @@ text = "Disconnect"
 
 [node name="Control" parent="." instance=ExtResource("4_jjvhh")]
 
+[node name="OrderGenerationTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
+[connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
