@@ -14,24 +14,43 @@ func interact(player: RigidBody2D):
 	if player.carry_id >= 0:
 		add_box(player)
 	else:
-		player.open_storage_ui(inventory)
+		open_storage_ui_rpc.rpc(player.name, inventory)
 
+@rpc("any_peer", "call_local", "reliable")
+func open_storage_ui_rpc(player_name, inventory):
+	get_node("../" + player_name).open_storage_ui(inventory)
 
 func add_box(player: RigidBody2D) -> void:
 	if items + player.carry_count > max_capacity:
 		print("Area is full")
 		return
 	
-	items += player.carry_count
-	# If such a box already exists, add to it, otherwise put it in
-	if inventory.has(player.carry_id):
-		inventory[player.carry_id] += player.carry_count
-	else:
-		inventory[player.carry_id] = player.carry_count
+	var carry_id = player.carry_id
+	var carry_count = player.carry_count
 	
-	player.carry_id = -1
-	player.carry_count = 0
-	player.get_node("Box").hide()
+	items += carry_count
+	# If such a box already exists, add to it, otherwise put it in
+	if inventory.has(carry_id):
+		inventory[carry_id] += carry_count
+	else:
+		inventory[carry_id] = carry_count
+	
+	remove_from_player.rpc(player.name)
+	
+@rpc("any_peer", "call_local", "reliable")
+func remove_from_player(player_name):
+	get_node("../" + player_name).set_carry_id(-1)
+	get_node("../" + player_name).set_carry_count(0)
+	get_node("../" + player_name).get_node("Box").hide()
+
+func remove_item(player: RigidBody2D, id: int, count: int) -> void:
+	inventory[id] -= count
+	if inventory[id] == 0:
+		inventory.erase(id)
+	
+	items -= count
+	player.set_carry_id(id)
+	player.set_carry_count(count)
 
 
 func evaluate_capacity():

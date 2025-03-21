@@ -48,13 +48,9 @@ func _on_get_pressed() -> void:
 	var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", selected_id)
 	
 	var player = get_node("../../")
-	player.carry_id = selected_id
-	player.carry_count = current_count
+	player.set_carry_id(selected_id)
+	player.set_carry_count(current_count)
 	player.get_node("Box/ItemSprite").set_texture(load(entry["sprite"]))
 	player.get_node("Box").show()
-	
-	inventory[selected_id] -= current_count
-	if inventory[selected_id] == 0:
-		inventory.erase(selected_id)
 	
 	player.close_storage_ui()
