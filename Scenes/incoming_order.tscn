@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu025j8ohp6cn"]
+[gd_scene load_steps=4 format=3 uid="uid://bu025j8ohp6cn"]
 
-[ext_resource type="Script" uid="uid://do0hf3xnlke2a" path="res://Scenes/order_ui.gd" id="1_enscj"]
-[ext_resource type="Theme" uid="uid://cn6to6tgjfp7s" path="res://Assets/Textures/Incomming_ord_UI/window_th.tres" id="1_ybb40"]
+[ext_resource type="Script" uid="uid://do0hf3xnlke2a" path="res://Scripts/order_ui.gd" id="1_enscj"]
+[ext_resource type="Theme" uid="uid://cn6to6tgjfp7s" path="res://Assets/Textures/Incoming_ord_UI/window_th.tres" id="1_ybb40"]
+[ext_resource type="Script" uid="uid://bclwtmvhw7uo7" path="res://Scripts/order_details_button.gd" id="3_qdbea"]
 
 [node name="PanelContainer" type="PanelContainer"]
 script = ExtResource("1_enscj")
@@ -32,3 +33,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("1_ybb40")
 text = "   ...   "
+script = ExtResource("3_qdbea")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/Button" method="_on_pressed"]
