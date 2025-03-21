@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ylmh80tnnj4"]
+
+[ext_resource type="Theme" uid="uid://c117yb2rnu4l5" path="res://Assets/Textures/Computer_UI/Computer_bg.tres" id="1_x2odt"]
+[ext_resource type="Theme" uid="uid://b66pkix1bercv" path="res://Assets/Textures/Crafting_UI/close_theme.tres" id="2_0pck3"]
+[ext_resource type="Theme" uid="uid://b1gb3hso4e0fj" path="res://Assets/Textures/Computer_UI/comp_buttons.tres" id="2_fv8w1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -543.5
+offset_top = -295.5
+offset_right = 543.5
+offset_bottom = 295.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x2odt")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="close" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_0pck3")
+text = "   exit   "
+
+[node name="inc_orders" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_fv8w1")
+theme_override_font_sizes/font_size = 64
+text = "   Incoming orders   "
+
+[node name="acc_orders" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_fv8w1")
+theme_override_font_sizes/font_size = 64
+text = "   Accepted orders   "
+
+[node name="store" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_fv8w1")
+theme_override_font_sizes/font_size = 64
+text = "   Store   "
