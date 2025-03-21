@@ -26,7 +26,7 @@ size = Vector2(57, 50)
 size = Vector2(57, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynf5e"]
-size = Vector2(118, 114)
+size = Vector2(84, 91.3333)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hptm8"]
 properties/0/path = NodePath(".:taken")
@@ -673,7 +673,7 @@ script = ExtResource("6_6bp64")
 texture = ExtResource("12_h1bgf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StampingArea"]
-position = Vector2(-1, -1)
+position = Vector2(-1.33334, 10.3333)
 shape = SubResource("RectangleShape2D_ynf5e")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="StampingArea"]
