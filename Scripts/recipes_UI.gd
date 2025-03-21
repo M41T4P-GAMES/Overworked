@@ -31,21 +31,26 @@ func decide_all_possible_products():
 			craftableProducts.append(product)
 
 func craft(product):
-	var ableToCraft = true
-	var availableMaterials = inputArea.inventory
-	for neededMaterial in product.materialCosts:
-		if availableMaterials.has(int(neededMaterial.materialId)):
-			if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
-				ableToCraft = false
-				break
-			else:
-				availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
-	if outputArea.inventory.has(int(product.id)):
-		outputArea.inventory[int(product.id)] += 1
+	var totalItemsInArea = 0
+	for value in outputArea.inventory.values():
+		totalItemsInArea += value
+	if totalItemsInArea < outputArea.max_capacity:
+		var ableToCraft = true
+		var availableMaterials = inputArea.inventory
+		for neededMaterial in product.materialCosts:
+			if availableMaterials.has(int(neededMaterial.materialId)):
+				if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
+					ableToCraft = false
+					break
+				else:
+					availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
+		if outputArea.inventory.has(int(product.id)):
+			outputArea.inventory[int(product.id)] += 1
+		else:
+			outputArea.inventory[int(product.id)] = 1
 	else:
-		outputArea.inventory[int(product.id)] = 1
+		print("Insufficient capacity")
 	print("Tried to craft " + product.productName)
-	
 
 func on_open():
 	visible = true
