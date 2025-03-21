@@ -140,6 +140,12 @@ func remove_item_rpc(selected_area_name, player_name, _carry_id, _carry_count):
 
 func open_stamping():
 	$Stamper/UI/AnimationPlayer.play("appear")
+	freeze = true
+
+func close_stamping(text: String):
+	selected_area.taken = false
+	carry_addr = text
+	freeze = false
 
 
 func _on_pickup_range_area_entered(area: Area2D) -> void:

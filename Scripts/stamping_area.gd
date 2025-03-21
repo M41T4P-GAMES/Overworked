@@ -4,9 +4,6 @@ extends Area2D
 
 
 func interact(player: RigidBody2D) -> void:
-	#if player.carry_id >= 0:
-		#taken = true
-		#player.open_stamping()
-	if !taken:
+	if !taken and player.carry_id >= 0 and player.carry_addr.is_empty():
 		player.open_stamping()
 		taken = true

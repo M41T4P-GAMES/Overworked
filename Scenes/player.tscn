@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://ckmv5npbdlsn7"]
+[gd_scene load_steps=112 format=3 uid="uid://ckmv5npbdlsn7"]
 
 [ext_resource type="Script" uid="uid://bt43rkjtaxbup" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dugfiin2drgr4" path="res://icon.svg" id="2_6t5aa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dkh4gjus75r0u" path="res://Scripts/StorageUI.gd" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://dw2x8okfxjl7m" path="res://Assets/Textures/parcel_base.png" id="4_x3wgy"]
 [ext_resource type="Script" uid="uid://cwg2yggwwsi63" path="res://Scripts/StampingUI.gd" id="7_3smsa"]
+[ext_resource type="Texture2D" uid="uid://ds1fu3av0ru2f" path="res://Assets/Textures/parcel.png" id="8_8erm5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
 atlas = ExtResource("2_vgqql")
@@ -1145,7 +1146,7 @@ mesh = SubResource("BoxMesh_3smsa")
 texture_filter = 1
 position = Vector2(0, -80)
 scale = Vector2(8.2, 8.2)
-texture = ExtResource("4_x3wgy")
+texture = ExtResource("8_8erm5")
 
 [node name="LineEdit" type="LineEdit" parent="Stamper/UI"]
 z_index = 1
