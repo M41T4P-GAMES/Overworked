@@ -10,11 +10,12 @@ func _ready() -> void:
 		multiplayer.peer_connected.connect(_on_peer_connected)
 		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 		_on_peer_connected()
+	
 
 func _on_peer_connected(id = 1):
 	var node = player_scene.instantiate()
 	node.name = str(id)
-	node.global_position = $Spawnpoint.global_position
+	#node.global_position = $Spawnpoint.global_position
 	add_child(node)
 	
 func _on_peer_disconnected(id):
@@ -41,5 +42,5 @@ func _on_udp_timer_timeout() -> void:
 func _on_order_generation_timer_timeout() -> void:
 	if GameStats.availableOrders.size() < 5:
 		GameStats.availableOrders.append(orderGeneration.generate_random_order())
-		$Control2.refresh()
+		#$Control2.refresh()
 	$OrderGenerationTimer.start(randi_range(5, 15))

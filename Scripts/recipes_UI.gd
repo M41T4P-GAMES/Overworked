@@ -22,7 +22,7 @@ func load_materials_and_products():
 func decide_all_possible_products():
 	for product in materialsAndProducts.products:
 		var ableToCraft = true
-		var availableMaterials = inputArea.inventory
+		var availableMaterials = []
 		for neededMaterial in product.materialCosts:
 			if availableMaterials.has(int(neededMaterial.materialId)):
 				if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
