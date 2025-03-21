@@ -12,6 +12,7 @@ func _ready() -> void:
 func _on_peer_connected(id = 1):
 	var node = player_scene.instantiate()
 	node.name = str(id)
+	node.global_position = $Spawnpoint.global_position
 	add_child(node)
 	
 func _on_peer_disconnected(id):
