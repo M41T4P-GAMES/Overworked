@@ -10,27 +10,28 @@ func _ready() -> void:
 
 
 func interact(player: RigidBody2D):
-	var boxes = player.get_node("Box")
 	
-	if boxes.get_child_count() != 0:
-		add_box(boxes.get_child(0))
+	if player.carry_id >= 0:
+		add_box(player)
 	else:
 		player.open_storage_ui(inventory)
 
 
-func add_box(new_box: StaticBody2D) -> void:
-	if items+new_box.count > max_capacity:
+func add_box(player: RigidBody2D) -> void:
+	if items + player.carry_count > max_capacity:
 		print("Area is full")
 		return
 	
-	items += new_box.count
+	items += player.carry_count
 	# If such a box already exists, add to it, otherwise put it in
-	if inventory.has(new_box.item_id):
-		inventory[new_box.item_id] += new_box.count
+	if inventory.has(player.carry_id):
+		inventory[player.carry_id] += player.carry_count
 	else:
-		inventory[new_box.item_id] = new_box.count
+		inventory[player.carry_id] = player.carry_count
 	
-	new_box.queue_free()
+	player.carry_id = -1
+	player.carry_count = 0
+	player.get_node("Box").hide()
 
 
 func evaluate_capacity():
