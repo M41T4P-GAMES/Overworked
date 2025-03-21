@@ -21,7 +21,7 @@ offset_right = 1152.0
 offset_bottom = 72.0
 texture = ExtResource("2_tb5vg")
 
-[node name="Label" type="Label" parent="TextureRect"]
+[node name="Money" type="Label" parent="TextureRect"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = -3.0
@@ -32,7 +32,7 @@ label_settings = SubResource("LabelSettings_iukcb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="TextureRect"]
+[node name="Timer" type="Label" parent="TextureRect"]
 layout_mode = 0
 offset_left = 988.0
 offset_top = -1.0

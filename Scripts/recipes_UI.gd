@@ -10,7 +10,6 @@ const spritePrefab = preload("res://Scenes/product_sprite.tscn")
 func _ready() -> void:
 	load_materials_and_products()
 	recipeContainer = get_node("PanelContainer/MarginContainer/VBoxContainer/GridContainer")
-	on_open()
 	
 func set_input_area(theArea):
 	inputArea = theArea
