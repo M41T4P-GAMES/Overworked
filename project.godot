@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Overworkeds"
 run/main_scene="uid://cwpg4ek85x3n4"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameStats="*res://Scripts/game_stats.gd"
 Global="*res://Scripts/global.gd"
+
+[global_group]
+
+Player=""
 
 [input]
 

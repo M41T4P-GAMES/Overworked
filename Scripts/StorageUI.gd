@@ -47,13 +47,7 @@ func _on_add_pressed() -> void:
 func _on_get_pressed() -> void:
 	var box = boxes.get_child(selected_id)
 	
-	if selected_max_count == current_count:
-		box.reparent(get_node("../../Box"))
-		box.position = Vector2(0, -100)
-		box.show()
-		get_node("../../").close_storage_ui()
-		return
-	
+
 	var node = new_box.instantiate()
 	node.init(box.item_id, current_count, box.uname, box.get_node("ItemSprite").texture)
 	get_node("../../Box").add_child(node)
@@ -61,4 +55,7 @@ func _on_get_pressed() -> void:
 	node.show()
 	
 	box.count -= current_count
+	if box.count == 0:
+		box.queue_free()
+	
 	get_node("../../").close_storage_ui()

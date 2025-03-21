@@ -14,10 +14,8 @@ size = Vector2(214, 199)
 [sub_resource type="BoxMesh" id="BoxMesh_cvnsp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vgqql"]
-load_path = "res://.godot/imported/comp-temp.png-3adf3c3f21be9ab3540232edf686baf0.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fkybt"]
-load_path = "res://.godot/imported/comp-select.png-eaa63adee7b3b62714cc99cb7faeaa5d.ctex"
 
 [sub_resource type="BoxMesh" id="BoxMesh_vgqql"]
 
@@ -31,7 +29,7 @@ properties/1/path = NodePath("Sprite2D:self_modulate")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" groups=["Player"]]
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_cvnsp")
@@ -276,6 +274,10 @@ theme_override_constants/separation = 87
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cvnsp")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bhedhrwomsm6j")
+spawn_path = NodePath("../Box")
 
 [connection signal="area_entered" from="PickupRange" to="." method="_on_pickup_range_area_entered"]
 [connection signal="area_exited" from="PickupRange" to="." method="_on_pickup_range_area_exited"]
