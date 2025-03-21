@@ -10,9 +10,7 @@ script = ExtResource("1_jjgbg")
 _spawnable_scenes = PackedStringArray("uid://ckmv5npbdlsn7")
 spawn_path = NodePath("..")
 
-[node name="BoxArea" parent="." instance=ExtResource("3_jjvhh")]
-position = Vector2(81, 449)
-max_capacity = 20
+[node name="Udp_timer" type="Timer" parent="."]
+autostart = true
 
-[node name="BoxArea2" parent="." instance=ExtResource("3_jjvhh")]
-position = Vector2(653, 403)
+[connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]

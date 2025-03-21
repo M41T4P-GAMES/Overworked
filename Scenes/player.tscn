@@ -27,6 +27,9 @@ load_path = "res://.godot/imported/comp-select.png-eaa63adee7b3b62714cc99cb7faea
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("Sprite2D:self_modulate")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -44,6 +47,7 @@ shape = SubResource("CapsuleShape2D_vgqql")
 enabled = false
 
 [node name="PickupRange" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
 position = Vector2(0, 0.5)
