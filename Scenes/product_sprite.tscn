@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://u784aqrdp7rf"]
+
+[ext_resource type="Texture2D" uid="uid://ct0xq75xptose" path="res://Assets/Textures/placeholder.png" id="1_n4n7d"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("1_n4n7d")

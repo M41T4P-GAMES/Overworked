@@ -5,6 +5,7 @@ const MAX_SPEED = 400
 var selected_area = null
 var item_tab = preload("res://Scenes/item_tab.tscn")
 var facing : Vector2i
+
 @export var carry_id = -1
 @export var carry_count = 0
 
@@ -107,6 +108,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func open_storage_ui(inv: Dictionary) -> void:
+
 	if is_multiplayer_authority():
 		freeze = true
 		$BoxStorage/UI/BottomButtons.hide()
@@ -121,7 +123,6 @@ func open_storage_ui(inv: Dictionary) -> void:
 			var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
 			new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
 			$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
-
 
 func close_storage_ui() -> void:
 	if is_multiplayer_authority():
