@@ -1,0 +1,54 @@
+[
+	{
+		"productId": 6,
+		"materials": [
+			{
+				"materialId": 0,
+				"count": 2
+			},
+			{
+				"materialId": 3,
+				"count": 1
+			}
+		]
+	},
+	{
+		"productId": 7,
+		"materials": [
+			{
+				"materialId": 0,
+				"count": 3
+			},
+			{
+				"materialId": 3,
+				"count": 2
+			}
+		]
+	},
+	{
+		"productId": 8,
+		"materials": [
+			{
+				"materialId": 0,
+				"count": 4
+			},
+			{
+				"materialId": 1,
+				"count": 2
+			}
+		]
+	},
+	{
+		"productId": 9,
+		"materials": [
+			{
+				"materialId": 3,
+				"count": 1
+			},
+			{
+				"materialId": 1,
+				"count": 5
+			}
+		]
+	},
+]

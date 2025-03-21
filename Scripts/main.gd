@@ -1,6 +1,7 @@
 extends Node2D
 var player_scene = preload("res://Scenes/player.tscn")
 
+
 func _ready() -> void:
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	if multiplayer.is_server():
@@ -18,3 +19,18 @@ func _on_peer_disconnected(id):
 
 func _on_server_disconnected():
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+
+
+func send_udp():
+	if multiplayer.is_server():
+		var udp = PacketPeerUDP.new()
+		udp.bind(1235)
+		udp.set_broadcast_enabled(true)
+		udp.set_dest_address("255.255.255.255", 1236)
+		var info = {"players": multiplayer.get_peers().size() + 1}
+		var text = JSON.stringify(info)
+		var bytes = text.to_ascii_buffer()
+		udp.put_packet(bytes)
+
+func _on_udp_timer_timeout() -> void:
+	send_udp()
