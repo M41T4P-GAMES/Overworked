@@ -26,5 +26,6 @@ func hide_report():
 
 func _on_continue_pressed() -> void:
 	if is_multiplayer_authority():
+		GameStats.daysPassed += 1
 		hide_report.rpc()
 		get_node("../DayTimer").start()
