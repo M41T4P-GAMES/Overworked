@@ -965,7 +965,7 @@ shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

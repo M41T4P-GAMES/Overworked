@@ -1,9 +1,8 @@
-[gd_scene load_steps=56 format=4 uid="uid://okgncs467xop"]
+[gd_scene load_steps=57 format=4 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cjost3e33t7mf" path="res://Scenes/esc_menu.tscn" id="4_d1ilt"]
 [ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
@@ -21,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://m5c3p6qo0q26" path="res://Assets/Workstations/logistics_workbench_idle.png" id="12_h1bgf"]
 [ext_resource type="Texture2D" uid="uid://dfkhlwy8ufd16" path="res://Assets/Workstations/truck_idle.png" id="12_k12tt"]
 [ext_resource type="Texture2D" uid="uid://c7lxxxxyn6q0o" path="res://Assets/Workstations/truck_move.png" id="13_h1bgf"]
-[ext_resource type="Script" path="res://Scripts/intake.gd" id="14_b3802"]
+[ext_resource type="Script" uid="uid://bwt7kugbs5nsq" path="res://Scripts/intake.gd" id="14_b3802"]
 [ext_resource type="Script" uid="uid://btcaip7q7gekd" path="res://Scripts/crafting_area.gd" id="16_gt3je"]
 [ext_resource type="PackedScene" uid="uid://b06tjwlk85cqr" path="res://Scenes/le_ui.tscn" id="22_ee4r6"]
 
@@ -35,6 +34,11 @@ size = Vector2(57, 50)
 line_spacing = 4.0
 font = ExtResource("11_pdsj5")
 font_size = 22
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gt3je"]
+properties/0/path = NodePath("PanelContainer/MarginContainer/VBoxContainer/Label:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynf5e"]
 size = Vector2(84, 91.3333)
@@ -663,6 +667,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Continue"
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Report"]
+replication_config = SubResource("SceneReplicationConfig_gt3je")
+
 [node name="ComputerUI" type="CanvasLayer" parent="."]
 visible = false
 
@@ -808,8 +815,6 @@ replication_config = SubResource("SceneReplicationConfig_pdsj5")
 [node name="LeUi" parent="HUD" instance=ExtResource("22_ee4r6")]
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
-[connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
-[connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
 [connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Report" method="_on_continue_pressed"]
 [connection signal="animation_finished" from="Tiri/Outgoing/AnimationPlayer" to="Tiri" method="_on_animation_player_animation_finished"]

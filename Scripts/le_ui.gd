@@ -1,7 +1,8 @@
 extends Control
 
 func _physics_process(_delta: float) -> void:
-	$TextureRect/Money.text = "$" + str(GameStats.money)
+	if is_multiplayer_authority():
+		$TextureRect/Money.text = "$" + str(GameStats.money)
 
 #func update_timer(time_remaining: int):
 	#var minutes = int(floor(time_remaining / 60))
