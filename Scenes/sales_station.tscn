@@ -7,6 +7,7 @@
 size = Vector2(51, 61)
 
 [node name="Sales_station" type="Area2D"]
+process_mode = 4
 script = ExtResource("1_vu4iw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
