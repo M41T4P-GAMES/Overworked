@@ -989,6 +989,7 @@ position = Vector2(0, -39)
 texture = ExtResource("4_x3wgy")
 
 [node name="ItemSprite" type="Sprite2D" parent="Box"]
+visible = false
 texture_filter = 1
 position = Vector2(0, -39)
 
