@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://071h7p35csqr" path="res://Scripts/esc_menu.gd" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cjost3e33t7mf" path="res://Scenes/esc_menu.tscn" id="4_d1ilt"]
 [ext_resource type="Script" uid="uid://dhuahje4sl8uw" path="res://Scripts/timer.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
@@ -807,6 +808,8 @@ replication_config = SubResource("SceneReplicationConfig_pdsj5")
 [node name="LeUi" parent="HUD" instance=ExtResource("22_ee4r6")]
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
+[connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
 [connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Report" method="_on_continue_pressed"]
 [connection signal="animation_finished" from="Tiri/Outgoing/AnimationPlayer" to="Tiri" method="_on_animation_player_animation_finished"]
