@@ -22,5 +22,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "take_off":
 		get_node("../Exports").clear()
 		$Outgoing/Call.start(randi_range(15, 25))
-		GameStats.money += 50
 		GameStats.add_money_earned(50)

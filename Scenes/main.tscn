@@ -802,7 +802,7 @@ mesh = SubResource("BoxMesh_8cuat")
 replication_config = SubResource("SceneReplicationConfig_o1aky")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 180.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 script = ExtResource("4_jjvhh")

@@ -5,6 +5,9 @@ func _ready() -> void:
 		$PanelContainer/MarginContainer/VBoxContainer/Continue.hide()
 	$PanelContainer/MarginContainer/VBoxContainer/Label.text = GameStats.get_report()
 
+func _process(delta: float) -> void:
+	$PanelContainer/MarginContainer/VBoxContainer/Label.text = GameStats.get_report()
+
 @rpc("any_peer", "call_local", "reliable")
 func show_report():
 	show()
