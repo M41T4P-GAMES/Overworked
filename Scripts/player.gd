@@ -15,7 +15,7 @@ func _ready() -> void:
 	if multiplayer.get_unique_id() == int(name):
 		$Camera2D.enabled = true
 		$Sprite2D.self_modulate = Global.skin_color
-	$CanvasLayer/CraftingUI.set_input_area(get_node("../BoxArea"))
+	$CanvasLayer/CraftingUI.set_input_area(get_node("../WorkbenchMaterialArea"))
 
 
 func _input(event: InputEvent) -> void:
@@ -148,7 +148,17 @@ func close_stamping(text: String):
 	selected_area.taken = false
 	carry_addr = text
 	freeze = false
+	
+func open_crafting():
+	$CanvasLayer/CraftingUI.visible = true
+	$CanvasLayer/CraftingUI.on_open(self)
+	freeze = true
 
+func close_crafting():
+	selected_area.taken = false
+	$CanvasLayer/CraftingUI.visible = false
+	#$CanvasLayer/CraftingUI.on_close()
+	freeze = false
 
 func clear_storage_ui() -> void:
 	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
