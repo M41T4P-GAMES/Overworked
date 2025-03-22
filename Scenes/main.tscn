@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://okgncs467xop"]
+[gd_scene load_steps=55 format=4 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cjhuj0h71gddn" path="res://Scenes/box_area.tscn" id="2_bo1nx"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dbmit08qsicpf" path="res://Scripts/report.gd" id="4_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dnqbnthguonb6" path="res://Assets/Textures/depot_export.png" id="4_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://bfwx6sggv8qdy" path="res://Assets/Textures/depot_import.png" id="5_k12tt"]
-[ext_resource type="Script" uid="uid://c3npeolnujnfc" path="res://Scripts/stamping_area.gd" id="6_6bp64"]
+[ext_resource type="Script" path="res://Scripts/stamping_area.gd" id="6_6bp64"]
 [ext_resource type="PackedScene" uid="uid://dmmeiy0tkns7w" path="res://Scenes/sales_station.tscn" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bb314gpmpvdv4" path="res://Assets/Workstations/production_workbench_idle.png" id="6_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://d1ylmh80tnnj4" path="res://Scenes/computer_UI.tscn" id="7_6bp64"]
@@ -613,3 +613,8 @@ text = "Disconnect"
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/resume" to="ESCMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="ESCMenu/Panel/VBoxContainer/Disconnect" to="ESCMenu" method="_on_disconnect_pressed"]
+[connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
+[connection signal="pressed" from="Report/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Report" method="_on_continue_pressed"]
+[connection signal="animation_finished" from="Tiri/Outgoing/AnimationPlayer" to="Tiri" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Tiri/Outgoing/Call" to="Tiri" method="_on_call_timeout"]
+[connection signal="timeout" from="DayTimer" to="DayTimer" method="_on_timeout"]
