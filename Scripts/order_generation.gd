@@ -5,9 +5,10 @@ var names = []
 var bullshitProducts = []
 var materialsAndProducts = null
 
-func _ready():
+func parse_json():
 	materialsAndProducts = load("res://Scripts/materials_and_products.gd").new()
 	materialsAndProducts.parse_json()
+	print(materialsAndProducts)
 	var addressesFile = FileAccess.open("res://Assets/Data/addresses.json", FileAccess.READ)
 	addresses = JSON.parse_string(addressesFile.get_as_text())
 	addressesFile.close()
@@ -19,8 +20,8 @@ func _ready():
 	bullshitProductsFile.close()
 	for bullshitProduct in bullshitProductsData:
 		bullshitProducts.append(materialsAndProducts.Product.new(bullshitProduct.id, bullshitProduct.name, null, null))
-	for i in range(100):
-		print(generate_random_order())
+	#for i in range(100):
+		#print(generate_random_order())
 
 class Order:
 	var orderProducts: Array
@@ -42,6 +43,13 @@ class Order:
 			var currentCount = counts[orderProducts.find(orderProduct)]
 			firstPartOfString += str(currentCount) + " " + orderProduct.productName + ("s" if currentCount > 1 else "") + (", " if orderProducts.find(orderProduct) < orderProducts.size() - 1 else "")
 		return "Products: " + firstPartOfString + "\nPay: "+ str(pay) + "\nCustomer: " + customerName + "\nAddress: " + customerAddress
+	
+	func list_products():
+		var firstPartOfString = ""
+		for orderProduct in orderProducts:
+			var currentCount = counts[orderProducts.find(orderProduct)]
+			firstPartOfString += str(currentCount) + " " + orderProduct.productName + ("s" if currentCount > 1 else "") + ("\n- " if orderProducts.find(orderProduct) < orderProducts.size() - 1 else "")
+		return "Order:\n- " + firstPartOfString
 		
 func generate_random_order():
 	var randomProductCount = randi_range(1, int(materialsAndProducts.products.size() / 1.5))

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://b06tjwlk85cqr"]
+
+[ext_resource type="Script" uid="uid://ch2428cgwnc8j" path="res://Scripts/le_ui.gd" id="1_v2e8o"]
+[ext_resource type="Texture2D" uid="uid://b1h6fovjuipgq" path="res://Assets/Textures/hud.png" id="2_tb5vg"]
+[ext_resource type="FontFile" uid="uid://df472u4sjn54k" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="3_ch2xh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iukcb"]
+font = ExtResource("3_ch2xh")
+font_size = 34
+font_color = Color(0, 0, 0, 1)
+
+[node name="LeUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_v2e8o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 72.0
+texture = ExtResource("2_tb5vg")
+
+[node name="Money" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -3.0
+offset_right = 73.0
+offset_bottom = 85.0
+text = "$"
+label_settings = SubResource("LabelSettings_iukcb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 988.0
+offset_top = -1.0
+offset_right = 1151.0
+offset_bottom = 87.0
+text = "03:00"
+label_settings = SubResource("LabelSettings_iukcb")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c117yb2rnu4l5" path="res://Assets/Textures/Computer_UI/Computer_bg.tres" id="1_38dwx"]
 [ext_resource type="Texture2D" uid="uid://dyckrx100bkna" path="res://Assets/Textures/Store_UI/wood.png" id="2_0l8cn"]
-[ext_resource type="Theme" uid="uid://dce40xx61qfnw" path="res://Assets/Textures/Incomming_ord_UI/acc_but.tres" id="3_mtkh2"]
+[ext_resource type="Theme" uid="uid://dce40xx61qfnw" path="res://Assets/Textures/Incoming_ord_UI/acc_but.tres" id="3_mtkh2"]
 [ext_resource type="Texture2D" uid="uid://cqghyvnvc7snk" path="res://Assets/Textures/Store_UI/iron_ingot.png" id="4_aipiy"]
 
 [node name="Control" type="Control"]

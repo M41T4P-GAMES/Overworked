@@ -39,6 +39,9 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/styles/focus = SubResource("StyleBoxEmpty_srv5y")
 Button/styles/hover = SubResource("StyleBoxFlat_b8jxc")
 Button/styles/normal = SubResource("StyleBoxFlat_huafb")

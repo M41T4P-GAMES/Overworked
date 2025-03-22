@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwpg4ek85x3n4"]
+[gd_scene load_steps=30 format=3 uid="uid://cwpg4ek85x3n4"]
 
 [ext_resource type="Script" uid="uid://cbyqfvacuxfnb" path="res://Scripts/menu.gd" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://biocs0b60fi5q" path="res://Scripts/skin_change.gd" id="2_cayip"]
+[ext_resource type="Theme" uid="uid://dys7obpbw7hjp" path="res://Assets/Textures/Crafting_UI/Default_button.tres" id="2_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://d4maagkcya53p" path="res://Assets/Textures/p_idle.png" id="3_cayip"]
+[ext_resource type="Texture2D" uid="uid://u7lru7ah7rn4" path="res://Assets/titlescreen.png" id="4_158mb"]
+[ext_resource type="AudioStream" uid="uid://bg2bfaglholqn" path="res://Assets/Audio/overworked.wav" id="6_jsrd8"]
+[ext_resource type="Script" uid="uid://srb6mx766pnp" path="res://Scripts/loop_music.gd" id="7_wbdvm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_158mb"]
 atlas = ExtResource("3_cayip")
@@ -75,6 +79,86 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_23t3j"]
+atlas = ExtResource("4_158mb")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ph6h"]
+atlas = ExtResource("4_158mb")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ti5v"]
+atlas = ExtResource("4_158mb")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1by5w"]
+atlas = ExtResource("4_158mb")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmwmt"]
+atlas = ExtResource("4_158mb")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc6uw"]
+atlas = ExtResource("4_158mb")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dldpb"]
+atlas = ExtResource("4_158mb")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d77ms"]
+atlas = ExtResource("4_158mb")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p34a"]
+atlas = ExtResource("4_158mb")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owyel"]
+atlas = ExtResource("4_158mb")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cayip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23t3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ph6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ti5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1by5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmwmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc6uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dldpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d77ms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p34a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owyel")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wwsa2"]
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -86,27 +170,47 @@ script = ExtResource("1_1rerr")
 
 [node name="Host" type="Button" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 76.0
+offset_top = 220.0
+offset_right = 513.0
+offset_bottom = 302.0
+theme = ExtResource("2_wwsa2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Host"
 
 [node name="Join" type="Button" parent="."]
 layout_mode = 0
-offset_left = 248.0
-offset_top = 40.0
-offset_right = 286.0
-offset_bottom = 71.0
-text = "Join
-"
+offset_left = 75.0
+offset_top = 378.0
+offset_right = 512.0
+offset_bottom = 460.0
+theme = ExtResource("2_wwsa2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Join"
 
-[node name="ip" type="TextEdit" parent="."]
+[node name="Quit" type="Button" parent="."]
 layout_mode = 0
-offset_top = 40.0
-offset_right = 232.0
-offset_bottom = 80.0
-placeholder_text = "IP Adsress"
+offset_left = 74.0
+offset_top = 544.0
+offset_right = 511.0
+offset_bottom = 626.0
+theme = ExtResource("2_wwsa2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="ip" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 320.0
+offset_right = 410.0
+offset_bottom = 360.0
+placeholder_text = "IP Address"
 
 [node name="Get_servers" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 113.0
@@ -138,7 +242,6 @@ enabled = false
 script = ExtResource("2_cayip")
 
 [node name="Preview" type="AnimatedSprite2D" parent="SkinChange"]
-self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(-2.00003, -121)
 scale = Vector2(3.96875, 3.96875)
@@ -153,6 +256,7 @@ offset_right = 446.0
 offset_bottom = 16.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
 [node name="G" type="HSlider" parent="SkinChange"]
 offset_left = -441.0
@@ -161,6 +265,7 @@ offset_right = 446.0
 offset_bottom = 49.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
 [node name="B" type="HSlider" parent="SkinChange"]
 offset_left = -441.0
@@ -169,28 +274,64 @@ offset_right = 446.0
 offset_bottom = 80.0
 max_value = 1.0
 step = 0.005
+value = 1.0
 
-[node name="JoinServer" type="Button" parent="SkinChange"]
-offset_left = -21.0
-offset_top = 154.0
-offset_right = 17.0
-offset_bottom = 185.0
-text = "Join"
+[node name="Join Server" type="Button" parent="SkinChange"]
+offset_left = -217.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 182.0
+theme = ExtResource("2_wwsa2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Join Server"
 
 [node name="Back" type="Button" parent="SkinChange"]
-offset_left = -25.0
-offset_top = 206.0
-offset_right = 20.0
-offset_bottom = 237.0
+offset_left = -217.0
+offset_top = 204.0
+offset_right = 220.0
+offset_bottom = 286.0
+theme = ExtResource("2_wwsa2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Back"
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(576, 324)
+scale = Vector2(1.8, 1.8)
+sprite_frames = SubResource("SpriteFrames_cayip")
+autoplay = "default"
+
+[node name="Background2" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(1856, 324)
+scale = Vector2(1.8, 1.8)
+sprite_frames = SubResource("SpriteFrames_cayip")
+autoplay = "default"
+
+[node name="Background2Blur" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.745098)
+z_index = -1
+position = Vector2(1855.78, 323.775)
+scale = Vector2(1152.45, 648.45)
+texture = SubResource("CanvasTexture_wwsa2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jsrd8")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("7_wbdvm")
 
 [connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Get_servers" to="." method="_on_get_servers_pressed"]
 [connection signal="timeout" from="browser_timer" to="." method="_on_browser_timer_timeout"]
 [connection signal="value_changed" from="SkinChange/R" to="SkinChange" method="_on_r_value_changed"]
 [connection signal="value_changed" from="SkinChange/G" to="SkinChange" method="_on_g_value_changed"]
 [connection signal="value_changed" from="SkinChange/B" to="SkinChange" method="_on_b_value_changed"]
-[connection signal="pressed" from="SkinChange/JoinServer" to="." method="_on_join_server_pressed"]
-[connection signal="pressed" from="SkinChange/JoinServer" to="SkinChange" method="_on_join_server_pressed"]
+[connection signal="pressed" from="SkinChange/Join Server" to="." method="_on_join_server_pressed"]
+[connection signal="pressed" from="SkinChange/Join Server" to="SkinChange" method="_on_join_server_pressed"]
 [connection signal="pressed" from="SkinChange/Back" to="." method="_on_back_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

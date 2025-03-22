@@ -8,12 +8,14 @@ var facing : Vector2i
 
 @export var carry_id = -1
 @export var carry_count = 0
+@export var carry_addr = ""
 
 func _ready() -> void:
 	set_multiplayer_authority(int(name))
 	if multiplayer.get_unique_id() == int(name):
 		$Camera2D.enabled = true
 		$Sprite2D.self_modulate = Global.skin_color
+	$CanvasLayer/CraftingUI.set_input_area(get_node("../WorkbenchMaterialArea"))
 
 
 func _input(event: InputEvent) -> void:
@@ -137,6 +139,46 @@ func remove_item_rpc(selected_area_name, player_name, _carry_id, _carry_count):
 	if multiplayer.is_server():
 		get_node('../' + selected_area_name).remove_item(get_node("../" + player_name), _carry_id, _carry_count)
 
+
+func open_stamping():
+	$Stamper/UI/AnimationPlayer.play("appear")
+	freeze = true
+
+func close_stamping(text: String):
+	selected_area.taken = false
+	carry_addr = text
+	freeze = false
+	
+func open_crafting():
+	$CanvasLayer/CraftingUI.visible = true
+	$CanvasLayer/CraftingUI.on_open(self)
+	freeze = true
+
+func close_crafting():
+	selected_area.taken = false
+	$CanvasLayer/CraftingUI.visible = false
+	#$CanvasLayer/CraftingUI.on_close()
+	freeze = false
+
+func clear_storage_ui() -> void:
+	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
+			i.queue_free()
+
+func create_storage_ui(inv: Dictionary) -> void:
+	for key in inv.keys():
+		var new_item = item_tab.instantiate()
+		var entry: Dictionary = Global.get_entry_by_id("res://Assets/Data/materials_and_products.json", key)
+		new_item.init(int(key), inv[key], entry["name"], load(entry["sprite"]))
+		$BoxStorage/UI/ScrollContainer/ItemList.add_child(new_item)
+
+func refresh_storage_ui(inv: Dictionary):
+	clear_storage_ui()
+	create_storage_ui(inv)
+
+
+
+
+
 func _on_pickup_range_area_entered(area: Area2D) -> void:
 	if is_multiplayer_authority():
 		selected_area = area
@@ -157,3 +199,6 @@ func set_carry_id(id: int) -> void:
 
 func set_carry_count(count: int) -> void:
 	carry_count = count
+
+func set_carry_addr(addr: String) -> void:
+	carry_addr = addr
