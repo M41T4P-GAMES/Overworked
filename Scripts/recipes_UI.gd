@@ -69,7 +69,7 @@ func on_open():
 		recipeContainer.add_child(currentCraftButton)
 		currentCraftButton.set_deferred("product", product)
 		currentCraftButton.set_deferred("craftingContainer", self)
-
+		currentCraftButton.call_deferred("set_texture", load(product.spritePath))
 	
 func on_close() -> void:
 	visible = false
