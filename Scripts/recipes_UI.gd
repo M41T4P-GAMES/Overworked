@@ -2,8 +2,9 @@ extends Control
 
 var materialsAndProducts = null
 var craftableProducts = []
-var inputArea = null
+var inputArea = null#get_node("../../../WorkbenchMaterialArea")
 var recipeContainer = null
+var currentPlayer = null
 const buttonPrefab = preload("res://Scenes/craft_button.tscn")
 const spritePrefab = preload("res://Scenes/product_sprite.tscn")
 
@@ -21,11 +22,13 @@ func load_materials_and_products():
 func decide_all_possible_products():
 	for product in materialsAndProducts.products:
 		var ableToCraft = true
-		var availableMaterials = []
+		var availableMaterials = inputArea.inventory
 		for neededMaterial in product.materialCosts:
 			if availableMaterials.has(int(neededMaterial.materialId)):
 				if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
 					ableToCraft = false
+			else:
+				ableToCraft = false
 		if ableToCraft:
 			craftableProducts.append(product)
 
@@ -43,16 +46,22 @@ func craft(product):
 				break
 			else:
 				availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
+		else:
+			ableToCraft = false
 	#if outputArea.inventory.has(int(product.id)):
 		#outputArea.inventory[int(product.id)] += 1
 	#else:
 		#outputArea.inventory[int(product.id)] = 1
 	#else:
 		#print("Insufficient capacity")
-	
-	print("Tried to craft " + product.productName)
+	currentPlayer.carry_id = product.id
+	currentPlayer.carry_count = 1
+	get_node("../../Box").visible = true
+	#print("Tried to craft " + product.productName)
+	on_close()
 
-func on_open():
+func on_open(player):
+	currentPlayer = player
 	visible = true
 	decide_all_possible_products()
 	for product in craftableProducts:
@@ -67,11 +76,14 @@ func on_open():
 		recipeContainer.add_child(recipeLabel)
 		var currentCraftButton = buttonPrefab.instantiate()
 		recipeContainer.add_child(currentCraftButton)
+		#currentCraftButton.draw_texture(load("res://Assets/Textures/" + product.productName.to_lower() + ".png"))
 		currentCraftButton.set_deferred("product", product)
 		currentCraftButton.set_deferred("craftingContainer", self)
 
 	
 func on_close() -> void:
+	currentPlayer.close_crafting()
+	currentPlayer = null
 	visible = false
 	craftableProducts.clear()
 	for node in recipeContainer.get_children():
