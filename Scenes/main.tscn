@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://okgncs467xop"]
+[gd_scene load_steps=59 format=4 uid="uid://okgncs467xop"]
 
 [ext_resource type="Script" uid="uid://vmf0670uammx" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="TileSet" uid="uid://dsu8aglalrce4" path="res://Assets/Tilesets/factory_tilesets.tres" id="2_21xkr"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://bwt7kugbs5nsq" path="res://Scripts/intake.gd" id="14_b3802"]
 [ext_resource type="Script" uid="uid://btcaip7q7gekd" path="res://Scripts/crafting_area.gd" id="16_gt3je"]
 [ext_resource type="PackedScene" uid="uid://b06tjwlk85cqr" path="res://Scenes/le_ui.tscn" id="22_ee4r6"]
+[ext_resource type="AudioStream" uid="uid://b305kbex8fpkx" path="res://Assets/Audio/magiikajiite.wav" id="24_3pmx8"]
+[ext_resource type="Script" uid="uid://srb6mx766pnp" path="res://Scripts/loop_music.gd" id="25_u50mg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fevyy"]
 size = Vector2(57, 50)
@@ -813,6 +815,12 @@ replication_config = SubResource("SceneReplicationConfig_pdsj5")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="LeUi" parent="HUD" instance=ExtResource("22_ee4r6")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_3pmx8")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("25_u50mg")
 
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
