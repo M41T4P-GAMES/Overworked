@@ -15,7 +15,6 @@ func _ready() -> void:
 func _on_peer_connected(id = 1):
 	var node = player_scene.instantiate()
 	node.name = str(id)
-	#node.global_position = $Spawnpoint.global_position
 	add_child(node)
 	
 func _on_peer_disconnected(id):
@@ -24,7 +23,7 @@ func _on_peer_disconnected(id):
 func _on_server_disconnected():
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
-
+#TODO Add server list
 func send_udp():
 	if multiplayer.is_server():
 		var udp = PacketPeerUDP.new()
@@ -38,7 +37,8 @@ func send_udp():
 
 func _on_udp_timer_timeout() -> void:
 	send_udp()
-#
+
+
 func _on_order_generation_timer_timeout() -> void:
 	if GameStats.availableOrders.size() < 5:
 		GameStats.availableOrders.append(orderGeneration.generate_random_order())
