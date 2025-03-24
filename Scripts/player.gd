@@ -138,16 +138,20 @@ func close_stamping(text: String):
 	carry_addr = text
 	freeze = false
 	
+@rpc("any_peer", "call_local", "reliable")
 func open_crafting():
-	$CanvasLayer/CraftingUI.visible = true
-	$CanvasLayer/CraftingUI.on_open(self)
-	freeze = true
+	if is_multiplayer_authority():
+		$CanvasLayer/CraftingUI.visible = true
+		$CanvasLayer/CraftingUI.on_open(self)
+		freeze = true
 
+@rpc("any_peer", "call_local", "reliable")
 func close_crafting():
-	selected_area.taken = false
-	$CanvasLayer/CraftingUI.visible = false
-	#$CanvasLayer/CraftingUI.on_close()
-	freeze = false
+	if is_multiplayer_authority():
+		selected_area.set_taken.rpc(false)
+		$CanvasLayer/CraftingUI.visible = false
+		#$CanvasLayer/CraftingUI.on_close()
+		freeze = false
 
 func clear_storage_ui() -> void:
 	for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
