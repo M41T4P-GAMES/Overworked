@@ -8,7 +8,7 @@ var totalMoneySpent = 0
 var daysPassed = 0
 var mistakesMade = 0
 var totalMistakesMade = 0
-var difficulty = 0
+var difficulty = 1
 var trucksSent = 0
 var totalTrucksSent = 0
 var itemsMade = 0
@@ -37,6 +37,7 @@ func end_shift():
 		totalTrucksSent += trucksSent
 		totalItemsMade += itemsMade
 		totalScore += difficulty * moneyEarned
+		money -= calculate_maintenance_costs()
 
 @rpc("any_peer", "call_local", "reliable")
 func increment_mistakes():
@@ -96,7 +97,6 @@ func reset():
 	daysPassed = 0
 	mistakesMade = 0
 	totalMistakesMade = 0
-	difficulty = 0
 	trucksSent = 0
 	totalTrucksSent = 0
 	itemsMade = 0
