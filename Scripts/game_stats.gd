@@ -86,3 +86,21 @@ func get_report():
 	"\nMoney: " + str(money) + \
 	"\nScore: " + str(totalScore) + \
 	("\nGAME OVER!" if money < 0 else "")
+	
+func reset():
+	money = 0
+	moneyEarned = 0
+	totalMoneyEarned = 0
+	moneySpent = 0
+	totalMoneySpent = 0
+	daysPassed = 0
+	mistakesMade = 0
+	totalMistakesMade = 0
+	difficulty = 0
+	trucksSent = 0
+	totalTrucksSent = 0
+	itemsMade = 0
+	totalItemsMade = 0
+	acceptedOrders = []
+	availableOrders = []
+	totalScore = 0

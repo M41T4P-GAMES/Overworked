@@ -9,6 +9,7 @@ var ip = ''
 
 func _ready() -> void:
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	GameStats.reset()
 
 func _on_host_pressed() -> void:
 	will_host = true
