@@ -20,7 +20,8 @@ func _on_call_timeout() -> void:
 # This is outgoing
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "take_off":
-		get_node("../Exports").clear()
+		var exports = get_node("../Exports")
+		exports.clear()
 		$Outgoing/Call.start(randi_range(15, 25))
 		GameStats.add_money_earned.rpc(50)
 		GameStats.increment_trucks.rpc()

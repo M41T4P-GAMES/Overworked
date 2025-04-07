@@ -3,6 +3,7 @@ extends Timer
 
 func _on_timeout() -> void:
 	#print("aasdfasdf")
+	GameStats.end_shift()
 	if is_multiplayer_authority():
 		get_node("../Report").show_report.rpc()
 		
