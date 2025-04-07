@@ -26,36 +26,51 @@ var totalScore = 0
 	#difficulty = newDifficulty
 	#totalTrucksSent = trucksAlreadySent
 	#itemsMade = itemsAlreadyMade
-	
+
+@rpc("any_peer", "call_local", "reliable")
 func end_shift():
-	totalMoneyEarned += moneyEarned
-	daysPassed += 1
-	totalMistakesMade += mistakesMade
-	difficulty *= 1.1
-	totalTrucksSent += trucksSent
-	totalItemsMade += itemsMade
-	totalScore += difficulty * moneyEarned
+	if multiplayer.is_server():
+		totalMoneyEarned += moneyEarned
+		daysPassed += 1
+		totalMistakesMade += mistakesMade
+		difficulty *= 1.1
+		totalTrucksSent += trucksSent
+		totalItemsMade += itemsMade
+		totalScore += difficulty * moneyEarned
 
+@rpc("any_peer", "call_local", "reliable")
 func increment_mistakes():
-	mistakesMade += 1
-	
+	if multiplayer.is_server():
+		mistakesMade += 1
+
+@rpc("any_peer", "call_local", "reliable")
 func increment_trucks():
-	trucksSent += 1
+	if multiplayer.is_server():
+		trucksSent += 1
 
+@rpc("any_peer", "call_local", "reliable")
 func increment_items():
-	itemsMade += 1
+	if multiplayer.is_server():
+		itemsMade += 1
 
+@rpc("any_peer", "call_local", "reliable")
 func add_money_earned(earnedMoney):
-	moneyEarned += earnedMoney
-	money += earnedMoney
+	if multiplayer.is_server():
+		moneyEarned += earnedMoney
+		money += earnedMoney
 
+@rpc("any_peer", "call_local", "reliable")
 func add_money_spent(spentMoney):
-	moneySpent += spentMoney
-	money -= spentMoney
+	if multiplayer.is_server():
+		moneySpent += spentMoney
+		money -= spentMoney
 
+@rpc("any_peer", "call_local", "reliable")
 func add_score(score):
-	totalScore += score
+	if multiplayer.is_server():
+		totalScore += score
 
+@rpc("any_peer", "call_local", "reliable")
 func calculate_maintenance_costs():
 	return int(floor(difficulty * (trucksSent * 50 + itemsMade * 20)))
 	
