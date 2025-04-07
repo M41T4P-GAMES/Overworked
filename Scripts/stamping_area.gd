@@ -9,3 +9,8 @@ func interact(player_name: String) -> void:
 		if !taken and player.carry_id >= 0 and player.carry_addr.is_empty():
 			player.open_stamping.rpc()
 			taken = true
+
+@rpc("any_peer", "call_local", "reliable")
+func untake():
+	if is_multiplayer_authority():
+		taken = false
