@@ -137,7 +137,7 @@ func open_stamping():
 @rpc("any_peer", "call_local", "reliable")
 func close_stamping(text: String):
 	if is_multiplayer_authority():
-		selected_area.taken = false
+		selected_area.untake.rpc()
 		carry_addr = text
 		freeze = false
 	
