@@ -128,15 +128,18 @@ func close_storage_ui() -> void:
 		for i in $BoxStorage/UI/ScrollContainer/ItemList.get_children():
 			i.queue_free()
 
-
+@rpc("any_peer", "call_local", "reliable")
 func open_stamping():
-	$Stamper/UI/AnimationPlayer.play("appear")
-	freeze = true
+	if is_multiplayer_authority():
+		$Stamper/UI/AnimationPlayer.play("appear")
+		freeze = true
 
+@rpc("any_peer", "call_local", "reliable")
 func close_stamping(text: String):
-	selected_area.taken = false
-	carry_addr = text
-	freeze = false
+	if is_multiplayer_authority():
+		selected_area.taken = false
+		carry_addr = text
+		freeze = false
 	
 @rpc("any_peer", "call_local", "reliable")
 func open_crafting():
