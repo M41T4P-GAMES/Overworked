@@ -32,33 +32,35 @@ func decide_all_possible_products():
 		if ableToCraft:
 			craftableProducts.append(product)
 
+@rpc("any_peer", "call_local", "reliable")
 func craft(product):
-	#var totalItemsInArea = 0
-	#for value in outputArea.inventory.values():
-		#totalItemsInArea += value
-	#if totalItemsInArea < outputArea.max_capacity:
-	var ableToCraft = true
-	var availableMaterials = inputArea.inventory
-	for neededMaterial in product.materialCosts:
-		if availableMaterials.has(int(neededMaterial.materialId)):
-			if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
-				ableToCraft = false
-				break
+	if is_multiplayer_authority():
+		#var totalItemsInArea = 0
+		#for value in outputArea.inventory.values():
+			#totalItemsInArea += value
+		#if totalItemsInArea < outputArea.max_capacity:
+		var ableToCraft = true
+		var availableMaterials = inputArea.inventory
+		for neededMaterial in product.materialCosts:
+			if availableMaterials.has(int(neededMaterial.materialId)):
+				if availableMaterials[int(neededMaterial.materialId)] < neededMaterial.count:
+					ableToCraft = false
+					break
+				else:
+					availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
 			else:
-				availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
-		else:
-			ableToCraft = false
-	#if outputArea.inventory.has(int(product.id)):
-		#outputArea.inventory[int(product.id)] += 1
-	#else:
-		#outputArea.inventory[int(product.id)] = 1
-	#else:
-		#print("Insufficient capacity")
-	currentPlayer.carry_id = product.id
-	currentPlayer.carry_count = 1
-	get_node("../../Box").visible = true
-	#print("Tried to craft " + product.productName)
-	on_close()
+				ableToCraft = false
+		#if outputArea.inventory.has(int(product.id)):
+			#outputArea.inventory[int(product.id)] += 1
+		#else:
+			#outputArea.inventory[int(product.id)] = 1
+		#else:
+			#print("Insufficient capacity")
+		currentPlayer.carry_id = product.id
+		currentPlayer.carry_count = 1
+		get_node("../../Box").visible = true
+		#print("Tried to craft " + product.productName)
+		on_close()
 
 func on_open(player):
 	currentPlayer = player
