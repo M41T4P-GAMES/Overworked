@@ -753,7 +753,7 @@ replication_config = SubResource("SceneReplicationConfig_neg2b")
 position = Vector2(-856, 366)
 monitorable = false
 script = ExtResource("8_344ge")
-max_capacity = 10
+max_capacity = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exports"]
 position = Vector2(-17.75, -0.999939)
@@ -782,6 +782,11 @@ shape = SubResource("RectangleShape2D_ueoa1")
 libraries = {
 &"": SubResource("AnimationLibrary_kltya")
 }
+
+[node name="Call" type="Timer" parent="Tiri/Incoming"]
+wait_time = 7.0
+one_shot = true
+autostart = true
 
 [node name="Outgoing" type="CharacterBody2D" parent="Tiri"]
 position = Vector2(-60, 592)
@@ -836,6 +841,8 @@ script = ExtResource("25_u50mg")
 [connection signal="timeout" from="Udp_timer" to="." method="_on_udp_timer_timeout"]
 [connection signal="timeout" from="OrderGenerationTimer" to="." method="_on_order_generation_timer_timeout"]
 [connection signal="pressed" from="Report/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Report" method="_on_continue_pressed"]
+[connection signal="animation_finished" from="Tiri/Incoming/AnimationPlayer" to="Tiri" method="_on_incoming_animation_player_animation_finished"]
+[connection signal="timeout" from="Tiri/Incoming/Call" to="Tiri" method="_on_intake_call_timeout"]
 [connection signal="animation_finished" from="Tiri/Outgoing/AnimationPlayer" to="Tiri" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Tiri/Outgoing/Call" to="Tiri" method="_on_call_timeout"]
 [connection signal="timeout" from="DayTimer" to="DayTimer" method="_on_timeout"]
