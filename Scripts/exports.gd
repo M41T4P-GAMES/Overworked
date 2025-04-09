@@ -12,7 +12,6 @@ func _ready() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func interact(player_name : String):
 	if is_multiplayer_authority():
-		print("aaaa")
 		var player = get_node("../" + player_name)
 		if !player.carry_addr.is_empty():
 				add_box.rpc(player.name)
