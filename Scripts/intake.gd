@@ -17,7 +17,8 @@ func interact(player_name : String):
 
 @rpc("any_peer", "call_local", "reliable")
 func open_storage_ui_rpc(player_name, inventory):
-	get_node("../" + player_name).open_storage_ui.rpc(inventory)
+	if is_multiplayer_authority():
+		get_node("../" + player_name).open_storage_ui.rpc(inventory)
 
 @rpc("any_peer", "call_local", "reliable")
 func remove_item(player_name : String, id: int, count: int) -> void:
