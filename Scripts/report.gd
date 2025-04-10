@@ -11,6 +11,8 @@ func _process(delta: float) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func show_report():
+	if GameStats.money < 0:
+		$PanelContainer/MarginContainer/VBoxContainer/Continue.text = "Back to Menu"
 	show()
 	for player in get_tree().get_nodes_in_group("Player"):
 		if player.is_multiplayer_authority():
@@ -27,6 +29,11 @@ func hide_report():
 
 func _on_continue_pressed() -> void:
 	if is_multiplayer_authority():
-		GameStats.daysPassed += 1
-		hide_report.rpc()
-		get_node("../DayTimer").start()
+		if GameStats.money < 0:
+			multiplayer.multiplayer_peer = null
+			get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+			
+		else:
+			GameStats.daysPassed += 1
+			hide_report.rpc()
+			get_node("../DayTimer").start()
