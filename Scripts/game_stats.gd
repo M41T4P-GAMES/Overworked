@@ -73,7 +73,7 @@ func add_score(score):
 
 @rpc("any_peer", "call_local", "reliable")
 func calculate_maintenance_costs():
-	return int(floor(difficulty * (trucksSent * 50 + itemsMade * 20)))
+	return int(floor(difficulty * (trucksSent * 10 + itemsMade * 5)))
 	
 func get_report():
 	return "Daily Report (Day " + str(daysPassed) + \

@@ -50,7 +50,7 @@ func remove_item(player_name : String, id: int, count: int) -> void:
 	if is_multiplayer_authority():
 		var player = get_node("../" + player_name)
 		inventory[id] -= count
-		if inventory[id] == 0:
+		if inventory[id] <= 0:
 			inventory.erase(id)
 		
 		items -= count

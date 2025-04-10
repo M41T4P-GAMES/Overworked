@@ -48,6 +48,8 @@ func craft(product):
 					break
 				else:
 					availableMaterials[int(neededMaterial.materialId)] -= int(neededMaterial.count)
+					if availableMaterials[int(neededMaterial.materialId)] <= 0:
+						availableMaterials.erase(int(neededMaterial.materialId))
 			else:
 				ableToCraft = false
 		#if outputArea.inventory.has(int(product.id)):
